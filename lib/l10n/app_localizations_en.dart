@@ -221,4 +221,100 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get buySellDesc =>
       'Connect with traders. Sell your honey or buy beekeeping supplies.';
+
+  @override
+  String get apiaries => 'Apiaries';
+
+  @override
+  String get noApiaries => 'No apiaries yet';
+
+  @override
+  String get addFirstApiary => 'Tap + to add your first apiary';
+
+  @override
+  String get addApiary => 'Add Apiary';
+
+  @override
+  String get apiaryName => 'Apiary Name';
+
+  @override
+  String get apiaryNameHint => 'Enter apiary name';
+
+  @override
+  String get apiaryNameRequired => 'Please enter apiary name';
+
+  @override
+  String get apiaryLocation => 'Location';
+
+  @override
+  String get apiaryLocationHint => 'Enter location';
+
+  @override
+  String get apiaryLocationRequired => 'Please enter location';
+
+  @override
+  String get notes => 'Notes';
+
+  @override
+  String get notesHint => 'Optional notes';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get hives => 'Hives';
+
+  @override
+  String get beehives => 'Beehives';
+
+  @override
+  String get noHives => 'No hives yet';
+
+  @override
+  String get addHive => 'Add Hive';
+
+  @override
+  String get createdAt => 'Created';
+
+  @override
+  String get deleteApiary => 'Delete Apiary';
+
+  @override
+  String get deleteApiaryConfirm => 'Are you sure you want to delete';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
+  String get selectImage => 'Select Image';
+
+  @override
+  String get camera => 'Camera';
+
+  @override
+  String get gallery => 'Gallery';
+
+  @override
+  String get tapToAddPhoto => 'Tap to add photo';
+
+  @override
+  String get gettingLocation => 'Getting location...';
+
+  @override
+  String get locationWillBeAdded => 'Location will be added with photo';
+
+  @override
+  String get pleaseAddImage => 'Please add a photo';
+
+  @override
+  String get location => 'Location';
+
+  @override
+  String get tapToTakePhoto => 'Tap to take photo';
+
+  @override
+  String get tapToOpenMaps => 'Tap to open in Maps';
 }

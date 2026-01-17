@@ -519,6 +519,198 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Connect with traders. Sell your honey or buy beekeeping supplies.'**
   String get buySellDesc;
+
+  /// No description provided for @apiaries.
+  ///
+  /// In en, this message translates to:
+  /// **'Apiaries'**
+  String get apiaries;
+
+  /// No description provided for @noApiaries.
+  ///
+  /// In en, this message translates to:
+  /// **'No apiaries yet'**
+  String get noApiaries;
+
+  /// No description provided for @addFirstApiary.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap + to add your first apiary'**
+  String get addFirstApiary;
+
+  /// No description provided for @addApiary.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Apiary'**
+  String get addApiary;
+
+  /// No description provided for @apiaryName.
+  ///
+  /// In en, this message translates to:
+  /// **'Apiary Name'**
+  String get apiaryName;
+
+  /// No description provided for @apiaryNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter apiary name'**
+  String get apiaryNameHint;
+
+  /// No description provided for @apiaryNameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter apiary name'**
+  String get apiaryNameRequired;
+
+  /// No description provided for @apiaryLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get apiaryLocation;
+
+  /// No description provided for @apiaryLocationHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter location'**
+  String get apiaryLocationHint;
+
+  /// No description provided for @apiaryLocationRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter location'**
+  String get apiaryLocationRequired;
+
+  /// No description provided for @notes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get notes;
+
+  /// No description provided for @notesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional notes'**
+  String get notesHint;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// No description provided for @hives.
+  ///
+  /// In en, this message translates to:
+  /// **'Hives'**
+  String get hives;
+
+  /// No description provided for @beehives.
+  ///
+  /// In en, this message translates to:
+  /// **'Beehives'**
+  String get beehives;
+
+  /// No description provided for @noHives.
+  ///
+  /// In en, this message translates to:
+  /// **'No hives yet'**
+  String get noHives;
+
+  /// No description provided for @addHive.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Hive'**
+  String get addHive;
+
+  /// No description provided for @createdAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Created'**
+  String get createdAt;
+
+  /// No description provided for @deleteApiary.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Apiary'**
+  String get deleteApiary;
+
+  /// No description provided for @deleteApiaryConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete'**
+  String get deleteApiaryConfirm;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// No description provided for @selectImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Image'**
+  String get selectImage;
+
+  /// No description provided for @camera.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera'**
+  String get camera;
+
+  /// No description provided for @gallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Gallery'**
+  String get gallery;
+
+  /// No description provided for @tapToAddPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to add photo'**
+  String get tapToAddPhoto;
+
+  /// No description provided for @gettingLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Getting location...'**
+  String get gettingLocation;
+
+  /// No description provided for @locationWillBeAdded.
+  ///
+  /// In en, this message translates to:
+  /// **'Location will be added with photo'**
+  String get locationWillBeAdded;
+
+  /// No description provided for @pleaseAddImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Please add a photo'**
+  String get pleaseAddImage;
+
+  /// No description provided for @location.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get location;
+
+  /// No description provided for @tapToTakePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to take photo'**
+  String get tapToTakePhoto;
+
+  /// No description provided for @tapToOpenMaps.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to open in Maps'**
+  String get tapToOpenMaps;
 }
 
 class _AppLocalizationsDelegate

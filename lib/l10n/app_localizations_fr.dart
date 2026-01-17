@@ -221,4 +221,101 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get buySellDesc =>
       'Connectez-vous avec les commerçants. Vendez votre miel ou achetez des fournitures apicoles.';
+
+  @override
+  String get apiaries => 'Ruchers';
+
+  @override
+  String get noApiaries => 'Aucun rucher';
+
+  @override
+  String get addFirstApiary =>
+      'Appuyez sur + pour ajouter votre premier rucher';
+
+  @override
+  String get addApiary => 'Ajouter un rucher';
+
+  @override
+  String get apiaryName => 'Nom du rucher';
+
+  @override
+  String get apiaryNameHint => 'Entrez le nom du rucher';
+
+  @override
+  String get apiaryNameRequired => 'Veuillez entrer le nom du rucher';
+
+  @override
+  String get apiaryLocation => 'Emplacement';
+
+  @override
+  String get apiaryLocationHint => 'Entrez l\'emplacement';
+
+  @override
+  String get apiaryLocationRequired => 'Veuillez entrer l\'emplacement';
+
+  @override
+  String get notes => 'Notes';
+
+  @override
+  String get notesHint => 'Notes optionnelles';
+
+  @override
+  String get save => 'Enregistrer';
+
+  @override
+  String get hives => 'Ruches';
+
+  @override
+  String get beehives => 'Ruches';
+
+  @override
+  String get noHives => 'Aucune ruche';
+
+  @override
+  String get addHive => 'Ajouter une ruche';
+
+  @override
+  String get createdAt => 'Créé le';
+
+  @override
+  String get deleteApiary => 'Supprimer le rucher';
+
+  @override
+  String get deleteApiaryConfirm => 'Êtes-vous sûr de vouloir supprimer';
+
+  @override
+  String get cancel => 'Annuler';
+
+  @override
+  String get delete => 'Supprimer';
+
+  @override
+  String get selectImage => 'Sélectionner une image';
+
+  @override
+  String get camera => 'Caméra';
+
+  @override
+  String get gallery => 'Galerie';
+
+  @override
+  String get tapToAddPhoto => 'Appuyez pour ajouter une photo';
+
+  @override
+  String get gettingLocation => 'Obtention de la position...';
+
+  @override
+  String get locationWillBeAdded => 'La position sera ajoutée avec la photo';
+
+  @override
+  String get pleaseAddImage => 'Veuillez ajouter une photo';
+
+  @override
+  String get location => 'Emplacement';
+
+  @override
+  String get tapToTakePhoto => 'Appuyez pour prendre une photo';
+
+  @override
+  String get tapToOpenMaps => 'Appuyez pour ouvrir dans Maps';
 }

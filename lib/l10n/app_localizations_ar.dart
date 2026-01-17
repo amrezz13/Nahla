@@ -220,4 +220,100 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get buySellDesc =>
       'تواصل مع التجار. بع عسلك أو اشترِ مستلزمات تربية النحل.';
+
+  @override
+  String get apiaries => 'المناحل';
+
+  @override
+  String get noApiaries => 'لا توجد مناحل بعد';
+
+  @override
+  String get addFirstApiary => 'اضغط + لإضافة أول منحل';
+
+  @override
+  String get addApiary => 'إضافة منحل';
+
+  @override
+  String get apiaryName => 'اسم المنحل';
+
+  @override
+  String get apiaryNameHint => 'أدخل اسم المنحل';
+
+  @override
+  String get apiaryNameRequired => 'الرجاء إدخال اسم المنحل';
+
+  @override
+  String get apiaryLocation => 'الموقع';
+
+  @override
+  String get apiaryLocationHint => 'أدخل الموقع';
+
+  @override
+  String get apiaryLocationRequired => 'الرجاء إدخال الموقع';
+
+  @override
+  String get notes => 'ملاحظات';
+
+  @override
+  String get notesHint => 'ملاحظات اختيارية';
+
+  @override
+  String get save => 'حفظ';
+
+  @override
+  String get hives => 'خلايا';
+
+  @override
+  String get beehives => 'خلايا النحل';
+
+  @override
+  String get noHives => 'لا توجد خلايا بعد';
+
+  @override
+  String get addHive => 'إضافة خلية';
+
+  @override
+  String get createdAt => 'تاريخ الإنشاء';
+
+  @override
+  String get deleteApiary => 'حذف المنحل';
+
+  @override
+  String get deleteApiaryConfirm => 'هل أنت متأكد من حذف';
+
+  @override
+  String get cancel => 'إلغاء';
+
+  @override
+  String get delete => 'حذف';
+
+  @override
+  String get selectImage => 'اختر صورة';
+
+  @override
+  String get camera => 'الكاميرا';
+
+  @override
+  String get gallery => 'المعرض';
+
+  @override
+  String get tapToAddPhoto => 'اضغط لإضافة صورة';
+
+  @override
+  String get gettingLocation => 'جاري تحديد الموقع...';
+
+  @override
+  String get locationWillBeAdded => 'سيتم إضافة الموقع مع الصورة';
+
+  @override
+  String get pleaseAddImage => 'الرجاء إضافة صورة';
+
+  @override
+  String get location => 'الموقع';
+
+  @override
+  String get tapToTakePhoto => 'اضغط لالتقاط صورة';
+
+  @override
+  String get tapToOpenMaps => 'اضغط لفتح في الخرائط';
 }
