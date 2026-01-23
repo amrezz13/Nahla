@@ -4,39 +4,53 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../l10n/app_localizations.dart';
 import '../models/apiary_model.dart';
+import '../../beehives/screens/add_beehive_screen.dart';
+import '../../beehives/models/beehive_model.dart';
+import '../../beehives/screens/beehive_detail_screen.dart';
 
-class ApiaryDetailScreen extends StatelessWidget {
+class ApiaryDetailScreen extends StatefulWidget {
   final Apiary apiary;
 
   const ApiaryDetailScreen({super.key, required this.apiary});
 
+  @override
+  State<ApiaryDetailScreen> createState() => _ApiaryDetailScreenState();
+}
+
+class _ApiaryDetailScreenState extends State<ApiaryDetailScreen> {
+  List<Beehive> _beehives = [];
+
+  // Get next system number for new beehive
+  int get _nextSystemNumber {
+    if (_beehives.isEmpty) return 1;
+    return _beehives.map((b) => b.systemNumber).reduce((a, b) => a > b ? a : b) + 1;
+  }
+
   Future<void> _openInMaps(BuildContext context) async {
-    if (!apiary.hasLocation) return;
+    if (!widget.apiary.hasLocation) return;
 
-    final lat = apiary.latitude!;
-    final lon = apiary.longitude!;
-    final name = Uri.encodeComponent(apiary.name);
+    final lat = widget.apiary.latitude!;
+    final lon = widget.apiary.longitude!;
+    final label = Uri.encodeComponent(widget.apiary.name);
 
-    // This URL works for both Google Maps and Apple Maps
-    final url = 'geo:$lat,$lon?q=$lat,$lon($name)';
-    final googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=$lat,$lon';
+    final geoUri = Uri.parse('geo:$lat,$lon?q=$lat,$lon($label)');
+    final googleMapsUri = Uri.parse('https://www.google.com/maps/search/?api=1&query=$lat,$lon');
+    final appleMapsUri = Uri.parse('https://maps.apple.com/?q=$lat,$lon');
 
     try {
-      // Try geo: URL first (opens default map app)
-      if (await canLaunchUrl(Uri.parse(url))) {
-        await launchUrl(Uri.parse(url));
-      } 
-      // Fallback to Google Maps web
-      else if (await canLaunchUrl(Uri.parse(googleMapsUrl))) {
-        await launchUrl(
-          Uri.parse(googleMapsUrl),
-          mode: LaunchMode.externalApplication,
-        );
+      if (await canLaunchUrl(geoUri)) {
+        await launchUrl(geoUri);
+      } else if (await canLaunchUrl(googleMapsUri)) {
+        await launchUrl(googleMapsUri, mode: LaunchMode.externalApplication);
+      } else if (await canLaunchUrl(appleMapsUri)) {
+        await launchUrl(appleMapsUri, mode: LaunchMode.externalApplication);
       } else {
-        _showSnackBar(context, 'Could not open maps');
+        await launchUrl(googleMapsUri, mode: LaunchMode.inAppWebView);
       }
     } catch (e) {
-      _showSnackBar(context, 'Error opening maps');
+      if (context.mounted) {
+        _showSnackBar(context, 'Could not open maps');
+      }
     }
   }
 
@@ -46,6 +60,46 @@ class ApiaryDetailScreen extends StatelessWidget {
     );
   }
 
+  Future<void> _navigateToAddBeehive() async {
+    final result = await Navigator.push<Beehive>(
+      context,
+      MaterialPageRoute(
+        builder: (context) => AddBeehiveScreen(
+          apiaryId: widget.apiary.id,
+          nextSystemNumber: _nextSystemNumber,
+        ),
+      ),
+    );
+
+    if (result != null) {
+      setState(() {
+        _beehives.add(result);
+      });
+      // TODO: Save to database
+      if (mounted) {
+        _showSnackBar(context, 'Beehive added successfully!');
+      }
+    }
+  }
+
+Future<void> _navigateToBeehiveDetail(Beehive beehive) async {
+  final result = await Navigator.push<String>(
+    context,
+    MaterialPageRoute(
+      builder: (context) => BeehiveDetailScreen(beehive: beehive),
+    ),
+  );
+
+  // Handle deletion
+  if (result == 'deleted') {
+    setState(() {
+      _beehives.removeWhere((b) => b.id == beehive.id);
+    });
+    if (mounted) {
+      _showSnackBar(context, 'Beehive deleted');
+    }
+  }
+}
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
@@ -60,10 +114,10 @@ class ApiaryDetailScreen extends StatelessWidget {
             backgroundColor: AppColors.primary,
             foregroundColor: Colors.white,
             flexibleSpace: FlexibleSpaceBar(
-              title: Text(apiary.name),
-              background: apiary.hasImage
+              title: Text(widget.apiary.name),
+              background: widget.apiary.hasImage
                   ? Image.file(
-                      File(apiary.imagePath!),
+                      File(widget.apiary.imagePath!),
                       fit: BoxFit.cover,
                     )
                   : Container(
@@ -82,8 +136,8 @@ class ApiaryDetailScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Location card (clickable - opens maps app)
-                  if (apiary.hasLocation)
+                  // Location card
+                  if (widget.apiary.hasLocation)
                     _buildLocationCard(context, l10n),
                   const SizedBox(height: 12),
 
@@ -91,7 +145,7 @@ class ApiaryDetailScreen extends StatelessWidget {
                   _buildInfoCard(
                     icon: '🐝',
                     title: l10n.hives,
-                    value: '${apiary.hiveCount}',
+                    value: '${_beehives.length}',
                   ),
                   const SizedBox(height: 12),
 
@@ -99,67 +153,47 @@ class ApiaryDetailScreen extends StatelessWidget {
                   _buildInfoCard(
                     icon: '📅',
                     title: l10n.createdAt,
-                    value: _formatDate(apiary.createdAt),
+                    value: _formatDate(widget.apiary.createdAt),
                   ),
 
-                  if (apiary.notes != null && apiary.notes!.isNotEmpty) ...[
+                  if (widget.apiary.notes != null && widget.apiary.notes!.isNotEmpty) ...[
                     const SizedBox(height: 12),
                     _buildInfoCard(
                       icon: '📝',
                       title: l10n.notes,
-                      value: apiary.notes!,
+                      value: widget.apiary.notes!,
                     ),
                   ],
 
                   const SizedBox(height: 24),
 
-                  // Beehives section
-                  Text(
-                    l10n.beehives,
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.secondary,
-                    ),
+                  // Beehives section header
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        l10n.beehives,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.secondary,
+                        ),
+                      ),
+                      if (_beehives.isNotEmpty)
+                        TextButton.icon(
+                          onPressed: _navigateToAddBeehive,
+                          icon: const Icon(Icons.add),
+                          label: Text(l10n.addHive),
+                        ),
+                    ],
                   ),
                   const SizedBox(height: 12),
 
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(32),
-                    decoration: BoxDecoration(
-                      color: AppColors.cardBg,
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(
-                        color: AppColors.primary.withOpacity(0.3),
-                      ),
-                    ),
-                    child: Column(
-                      children: [
-                        const Text('🐝', style: TextStyle(fontSize: 48)),
-                        const SizedBox(height: 12),
-                        Text(
-                          l10n.noHives,
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: AppColors.textSecondary,
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        ElevatedButton.icon(
-                          onPressed: () {
-                            // TODO: Add hive
-                          },
-                          icon: const Icon(Icons.add),
-                          label: Text(l10n.addHive),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.primary,
-                            foregroundColor: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  // Beehives list or empty state
+                  if (_beehives.isEmpty)
+                    _buildEmptyBeehivesState(l10n)
+                  else
+                    _buildBeehivesList(l10n),
                 ],
               ),
             ),
@@ -168,6 +202,161 @@ class ApiaryDetailScreen extends StatelessWidget {
       ),
     );
   }
+
+  Widget _buildEmptyBeehivesState(AppLocalizations l10n) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(32),
+      decoration: BoxDecoration(
+        color: AppColors.cardBg,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: AppColors.primary.withOpacity(0.3),
+        ),
+      ),
+      child: Column(
+        children: [
+          const Text('🐝', style: TextStyle(fontSize: 48)),
+          const SizedBox(height: 12),
+          Text(
+            l10n.noHives,
+            style: TextStyle(
+              fontSize: 16,
+              color: AppColors.textSecondary,
+            ),
+          ),
+          const SizedBox(height: 16),
+          ElevatedButton.icon(
+            onPressed: _navigateToAddBeehive,
+            icon: const Icon(Icons.add),
+            label: Text(l10n.addHive),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.primary,
+              foregroundColor: Colors.white,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildBeehivesList(AppLocalizations l10n) {
+    return ListView.separated(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: _beehives.length,
+      separatorBuilder: (context, index) => const SizedBox(height: 12),
+      itemBuilder: (context, index) {
+        final beehive = _beehives[index];
+        return _buildBeehiveCard(beehive, l10n);
+      },
+    );
+  }
+
+Widget _buildBeehiveCard(Beehive beehive, AppLocalizations l10n) {
+  return GestureDetector(
+    onTap: () => _navigateToBeehiveDetail(beehive),
+    child: Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          // System number badge
+          Container(
+            width: 50,
+            height: 50,
+            decoration: BoxDecoration(
+              color: AppColors.primary.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Center(
+              child: Text(
+                '#${beehive.systemNumber.toString().padLeft(2, '0')}',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.primary,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(width: 12),
+
+          // Info
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      beehive.name ?? l10n.hiveNumber,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        color: AppColors.secondary,
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      '(${beehive.hiveNumber})',
+                      style: TextStyle(
+                        color: AppColors.textSecondary,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 4),
+                Row(
+                  children: [
+                    // Queen status
+                    Text(
+                      beehive.hasQueen ? '👑' : '❌',
+                      style: const TextStyle(fontSize: 14),
+                    ),
+                    const SizedBox(width: 8),
+                    // Health status
+                    Text(
+                      beehive.healthStatus.emoji,
+                      style: const TextStyle(fontSize: 14),
+                    ),
+                    const SizedBox(width: 8),
+                    // Frames
+                    Text(
+                      '${beehive.frameCount} ${l10n.frames}',
+                      style: TextStyle(
+                        color: AppColors.textSecondary,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+
+          // Arrow
+          Icon(
+            Icons.chevron_right,
+            color: AppColors.textSecondary,
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+
 
   Widget _buildLocationCard(BuildContext context, AppLocalizations l10n) {
     return GestureDetector(
@@ -201,7 +390,7 @@ class ApiaryDetailScreen extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    apiary.locationString,
+                    widget.apiary.locationString,
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
