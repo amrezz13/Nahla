@@ -9,11 +9,13 @@ import 'add_inspection_screen.dart';
 class InspectionsListScreen extends StatefulWidget {
   final String beehiveId;
   final String beehiveName;
+  final String apiaryId; 
 
   const InspectionsListScreen({
     super.key,
     required this.beehiveId,
     required this.beehiveName,
+     required this.apiaryId,
   });
 
   @override
@@ -30,6 +32,7 @@ class _InspectionsListScreenState extends State<InspectionsListScreen> {
         builder: (context) => AddInspectionScreen(
           beehiveId: widget.beehiveId,
           beehiveName: widget.beehiveName,
+           apiaryId: widget.apiaryId, 
         ),
       ),
     );
@@ -298,7 +301,7 @@ class _InspectionCard extends StatelessWidget {
                             ),
                             const SizedBox(width: 4),
                             Text(
-                              inspection.weather!.label,
+                              inspection.weather!.getLabel(l10n),
                               style: TextStyle(
                                 fontSize: 12,
                                 color: Colors.grey[600],
@@ -355,7 +358,7 @@ class _InspectionCard extends StatelessWidget {
                         Text(action.emoji, style: const TextStyle(fontSize: 12)),
                         const SizedBox(width: 4),
                         Text(
-                          action.label,
+                          action.getLabel(l10n),
                           style: TextStyle(
                             fontSize: 11,
                             color: Colors.blue[700],

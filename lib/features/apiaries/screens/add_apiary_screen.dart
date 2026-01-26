@@ -1,10 +1,14 @@
+// lib/features/apiaries/screens/add_apiary_screen.dart
+
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:provider/provider.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../auth//services/auth_service.dart';
 import '../../../l10n/app_localizations.dart';
-import '../models/apiary_model.dart';
+import '../providers/apiaries_provider.dart';
 
 class AddApiaryScreen extends StatefulWidget {
   const AddApiaryScreen({super.key});
@@ -16,16 +20,19 @@ class AddApiaryScreen extends StatefulWidget {
 class _AddApiaryScreenState extends State<AddApiaryScreen> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
+  final _locationController = TextEditingController();
   final _notesController = TextEditingController();
 
   File? _image;
   double? _latitude;
   double? _longitude;
   bool _isGettingLocation = false;
+  bool _isSaving = false;
 
   @override
   void dispose() {
     _nameController.dispose();
+    _locationController.dispose();
     _notesController.dispose();
     super.dispose();
   }
@@ -50,6 +57,62 @@ class _AddApiaryScreenState extends State<AddApiaryScreen> {
     } catch (e) {
       _showSnackBar('Error: $e');
     }
+  }
+
+  Future<void> _pickFromGallery() async {
+    final picker = ImagePicker();
+
+    try {
+      final pickedFile = await picker.pickImage(
+        source: ImageSource.gallery,
+        imageQuality: 80,
+      );
+
+      if (pickedFile != null) {
+        setState(() {
+          _image = File(pickedFile.path);
+        });
+      }
+    } catch (e) {
+      _showSnackBar('Error: $e');
+    }
+  }
+
+  void _showImageSourceDialog() {
+    final l10n = AppLocalizations.of(context)!;
+    
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      ),
+      builder: (context) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                leading: const Icon(Icons.camera_alt),
+                title: Text(l10n.tapToTakePhoto),
+                onTap: () {
+                  Navigator.pop(context);
+                  _takePicture();
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.photo_library),
+                title: Text(l10n.selectImage),
+                onTap: () {
+                  Navigator.pop(context);
+                  _pickFromGallery();
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   Future<void> _getCurrentLocation() async {
@@ -103,7 +166,7 @@ class _AddApiaryScreenState extends State<AddApiaryScreen> {
     );
   }
 
-  void _saveApiary() {
+  Future<void> _saveApiary() async {
     final l10n = AppLocalizations.of(context)!;
 
     if (_formKey.currentState!.validate()) {
@@ -112,19 +175,50 @@ class _AddApiaryScreenState extends State<AddApiaryScreen> {
         return;
       }
 
-      final apiary = Apiary(
-        id: DateTime.now().millisecondsSinceEpoch.toString(),
-        name: _nameController.text.trim(),
-        imagePath: _image!.path,
-        latitude: _latitude,
-        longitude: _longitude,
-        createdAt: DateTime.now(),
-        notes: _notesController.text.trim().isEmpty
-            ? null
-            : _notesController.text.trim(),
-      );
+      // Get userId from AuthService
+      final userId = context.read<AuthService>().userId;
 
-      Navigator.pop(context, apiary);
+      if (userId == null) {
+        _showSnackBar('User not logged in');
+        return;
+      }
+
+      setState(() {
+        _isSaving = true;
+      });
+
+      try {
+        final success = await context.read<ApiariesProvider>().addApiary(
+          name: _nameController.text.trim(),
+          location: _locationController.text.trim().isEmpty
+              ? 'No address'
+              : _locationController.text.trim(),
+          latitude: _latitude,
+          longitude: _longitude,
+          notes: _notesController.text.trim().isEmpty
+              ? null
+              : _notesController.text.trim(),
+          imageUrl: _image!.path,
+          userId: userId,
+        );
+
+        if (success) {
+          if (mounted) {
+            Navigator.pop(context);
+          }
+        } else {
+          final error = context.read<ApiariesProvider>().error;
+          _showSnackBar(error ?? 'Failed to add apiary');
+        }
+      } catch (e) {
+        _showSnackBar('Error: $e');
+      } finally {
+        if (mounted) {
+          setState(() {
+            _isSaving = false;
+          });
+        }
+      }
     }
   }
 
@@ -147,7 +241,7 @@ class _AddApiaryScreenState extends State<AddApiaryScreen> {
             children: [
               // Camera button
               GestureDetector(
-                onTap: _takePicture,
+                onTap: _showImageSourceDialog,
                 child: Container(
                   height: 200,
                   decoration: BoxDecoration(
@@ -233,7 +327,9 @@ class _AddApiaryScreenState extends State<AddApiaryScreen> {
                   children: [
                     Icon(
                       Icons.location_on,
-                      color: _latitude != null ? AppColors.success : AppColors.textSecondary,
+                      color: _latitude != null
+                          ? AppColors.success
+                          : AppColors.textSecondary,
                     ),
                     const SizedBox(width: 12),
                     Expanded(
@@ -251,7 +347,8 @@ class _AddApiaryScreenState extends State<AddApiaryScreen> {
                                 const SizedBox(width: 8),
                                 Text(
                                   l10n.gettingLocation,
-                                  style: TextStyle(color: AppColors.textSecondary),
+                                  style:
+                                      TextStyle(color: AppColors.textSecondary),
                                 ),
                               ],
                             )
@@ -266,6 +363,16 @@ class _AddApiaryScreenState extends State<AddApiaryScreen> {
                               ),
                             ),
                     ),
+                    // Manual location button
+                    if (_latitude == null && !_isGettingLocation)
+                      IconButton(
+                        onPressed: _getCurrentLocation,
+                        icon: Icon(
+                          Icons.my_location,
+                          color: AppColors.primary,
+                        ),
+                        tooltip: 'Get current location',
+                      ),
                   ],
                 ),
               ),
@@ -291,6 +398,20 @@ class _AddApiaryScreenState extends State<AddApiaryScreen> {
               ),
               const SizedBox(height: 16),
 
+              // Location/Address field (NEW)
+              TextFormField(
+                controller: _locationController,
+                decoration: InputDecoration(
+                  labelText: l10n.location,
+                  hintText: l10n.location,
+                  prefixIcon: const Icon(Icons.place),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+
               // Notes field
               TextFormField(
                 controller: _notesController,
@@ -308,7 +429,7 @@ class _AddApiaryScreenState extends State<AddApiaryScreen> {
 
               // Save button
               ElevatedButton(
-                onPressed: _saveApiary,
+                onPressed: _isSaving ? null : _saveApiary,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,
                   padding: const EdgeInsets.symmetric(vertical: 16),
@@ -316,14 +437,23 @@ class _AddApiaryScreenState extends State<AddApiaryScreen> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                child: Text(
-                  l10n.save,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
+                child: _isSaving
+                    ? const SizedBox(
+                        height: 20,
+                        width: 20,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          color: Colors.white,
+                        ),
+                      )
+                    : Text(
+                        l10n.save,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
               ),
             ],
           ),

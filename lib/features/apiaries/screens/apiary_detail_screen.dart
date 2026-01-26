@@ -117,7 +117,7 @@ Future<void> _navigateToBeehiveDetail(Beehive beehive) async {
               title: Text(widget.apiary.name),
               background: widget.apiary.hasImage
                   ? Image.file(
-                      File(widget.apiary.imagePath!),
+                      File(widget.apiary.imageUrl!),
                       fit: BoxFit.cover,
                     )
                   : Container(

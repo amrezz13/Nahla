@@ -1,29 +1,21 @@
 // lib/features/inspections/models/inspection_model.dart
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../../l10n/app_localizations.dart';
+
+// === WEATHER CONDITION ===
 enum WeatherCondition { sunny, partlyCloudy, cloudy, rainy, windy, hot, cold }
 
 extension WeatherConditionExtension on WeatherCondition {
-  String get label {
+  String getLabel(AppLocalizations l10n) {
     switch (this) {
-      case WeatherCondition.sunny: return 'Sunny';
-      case WeatherCondition.partlyCloudy: return 'Partly Cloudy';
-      case WeatherCondition.cloudy: return 'Cloudy';
-      case WeatherCondition.rainy: return 'Rainy';
-      case WeatherCondition.windy: return 'Windy';
-      case WeatherCondition.hot: return 'Hot';
-      case WeatherCondition.cold: return 'Cold';
-    }
-  }
-
-  String get labelAr {
-    switch (this) {
-      case WeatherCondition.sunny: return 'مشمس';
-      case WeatherCondition.partlyCloudy: return 'غائم جزئياً';
-      case WeatherCondition.cloudy: return 'غائم';
-      case WeatherCondition.rainy: return 'ماطر';
-      case WeatherCondition.windy: return 'عاصف';
-      case WeatherCondition.hot: return 'حار';
-      case WeatherCondition.cold: return 'بارد';
+      case WeatherCondition.sunny: return l10n.weatherSunny;
+      case WeatherCondition.partlyCloudy: return l10n.weatherPartlyCloudy;
+      case WeatherCondition.cloudy: return l10n.weatherCloudy;
+      case WeatherCondition.rainy: return l10n.weatherRainy;
+      case WeatherCondition.windy: return l10n.weatherWindy;
+      case WeatherCondition.hot: return l10n.weatherHot;
+      case WeatherCondition.cold: return l10n.weatherCold;
     }
   }
 
@@ -40,26 +32,17 @@ extension WeatherConditionExtension on WeatherCondition {
   }
 }
 
+// === BROOD PATTERN ===
 enum BroodPattern { excellent, good, spotty, poor, none }
 
 extension BroodPatternExtension on BroodPattern {
-  String get label {
+  String getLabel(AppLocalizations l10n) {
     switch (this) {
-      case BroodPattern.excellent: return 'Excellent';
-      case BroodPattern.good: return 'Good';
-      case BroodPattern.spotty: return 'Spotty';
-      case BroodPattern.poor: return 'Poor';
-      case BroodPattern.none: return 'None';
-    }
-  }
-
-  String get labelAr {
-    switch (this) {
-      case BroodPattern.excellent: return 'ممتاز';
-      case BroodPattern.good: return 'جيد';
-      case BroodPattern.spotty: return 'متقطع';
-      case BroodPattern.poor: return 'ضعيف';
-      case BroodPattern.none: return 'لا يوجد';
+      case BroodPattern.excellent: return l10n.broodExcellent;
+      case BroodPattern.good: return l10n.broodGood;
+      case BroodPattern.spotty: return l10n.broodSpotty;
+      case BroodPattern.poor: return l10n.broodPoor;
+      case BroodPattern.none: return l10n.broodNone;
     }
   }
 
@@ -74,24 +57,16 @@ extension BroodPatternExtension on BroodPattern {
   }
 }
 
+// === POPULATION STRENGTH ===
 enum PopulationStrength { strong, medium, weak, veryWeak }
 
 extension PopulationStrengthExtension on PopulationStrength {
-  String get label {
+  String getLabel(AppLocalizations l10n) {
     switch (this) {
-      case PopulationStrength.strong: return 'Strong';
-      case PopulationStrength.medium: return 'Medium';
-      case PopulationStrength.weak: return 'Weak';
-      case PopulationStrength.veryWeak: return 'Very Weak';
-    }
-  }
-
-  String get labelAr {
-    switch (this) {
-      case PopulationStrength.strong: return 'قوي';
-      case PopulationStrength.medium: return 'متوسط';
-      case PopulationStrength.weak: return 'ضعيف';
-      case PopulationStrength.veryWeak: return 'ضعيف جداً';
+      case PopulationStrength.strong: return l10n.populationStrong;
+      case PopulationStrength.medium: return l10n.populationMedium;
+      case PopulationStrength.weak: return l10n.populationWeak;
+      case PopulationStrength.veryWeak: return l10n.populationVeryWeak;
     }
   }
 
@@ -105,22 +80,15 @@ extension PopulationStrengthExtension on PopulationStrength {
   }
 }
 
+// === STORES LEVEL ===
 enum StoresLevel { low, adequate, high }
 
 extension StoresLevelExtension on StoresLevel {
-  String get label {
+  String getLabel(AppLocalizations l10n) {
     switch (this) {
-      case StoresLevel.low: return 'Low';
-      case StoresLevel.adequate: return 'Adequate';
-      case StoresLevel.high: return 'High';
-    }
-  }
-
-  String get labelAr {
-    switch (this) {
-      case StoresLevel.low: return 'منخفض';
-      case StoresLevel.adequate: return 'كافٍ';
-      case StoresLevel.high: return 'مرتفع';
+      case StoresLevel.low: return l10n.storesLow;
+      case StoresLevel.adequate: return l10n.storesAdequate;
+      case StoresLevel.high: return l10n.storesHigh;
     }
   }
 
@@ -133,22 +101,15 @@ extension StoresLevelExtension on StoresLevel {
   }
 }
 
+// === TEMPERAMENT ===
 enum Temperament { calm, nervous, aggressive }
 
 extension TemperamentExtension on Temperament {
-  String get label {
+  String getLabel(AppLocalizations l10n) {
     switch (this) {
-      case Temperament.calm: return 'Calm';
-      case Temperament.nervous: return 'Nervous';
-      case Temperament.aggressive: return 'Aggressive';
-    }
-  }
-
-  String get labelAr {
-    switch (this) {
-      case Temperament.calm: return 'هادئ';
-      case Temperament.nervous: return 'عصبي';
-      case Temperament.aggressive: return 'عدواني';
+      case Temperament.calm: return l10n.temperamentCalm;
+      case Temperament.nervous: return l10n.temperamentNervous;
+      case Temperament.aggressive: return l10n.temperamentAggressive;
     }
   }
 
@@ -161,6 +122,7 @@ extension TemperamentExtension on Temperament {
   }
 }
 
+// === DISEASE ===
 enum Disease {
   varroa,
   americanFoulbrood,
@@ -172,31 +134,20 @@ enum Disease {
 }
 
 extension DiseaseExtension on Disease {
-  String get label {
+  String getLabel(AppLocalizations l10n) {
     switch (this) {
-      case Disease.varroa: return 'Varroa Mites';
-      case Disease.americanFoulbrood: return 'American Foulbrood';
-      case Disease.europeanFoulbrood: return 'European Foulbrood';
-      case Disease.nosema: return 'Nosema';
-      case Disease.chalkbrood: return 'Chalkbrood';
-      case Disease.sacbrood: return 'Sacbrood';
-      case Disease.other: return 'Other';
-    }
-  }
-
-  String get labelAr {
-    switch (this) {
-      case Disease.varroa: return 'حلم الفاروا';
-      case Disease.americanFoulbrood: return 'تعفن الحضنة الأمريكي';
-      case Disease.europeanFoulbrood: return 'تعفن الحضنة الأوروبي';
-      case Disease.nosema: return 'النوزيما';
-      case Disease.chalkbrood: return 'الحضنة الطباشيرية';
-      case Disease.sacbrood: return 'الحضنة الكيسية';
-      case Disease.other: return 'أخرى';
+      case Disease.varroa: return l10n.diseaseVarroa;
+      case Disease.americanFoulbrood: return l10n.diseaseAmericanFoulbrood;
+      case Disease.europeanFoulbrood: return l10n.diseaseEuropeanFoulbrood;
+      case Disease.nosema: return l10n.diseaseNosema;
+      case Disease.chalkbrood: return l10n.diseaseChalkbrood;
+      case Disease.sacbrood: return l10n.diseaseSacbrood;
+      case Disease.other: return l10n.diseaseOther;
     }
   }
 }
 
+// === PEST ===
 enum Pest {
   smallHiveBeetle,
   waxMoth,
@@ -207,25 +158,14 @@ enum Pest {
 }
 
 extension PestExtension on Pest {
-  String get label {
+  String getLabel(AppLocalizations l10n) {
     switch (this) {
-      case Pest.smallHiveBeetle: return 'Small Hive Beetle';
-      case Pest.waxMoth: return 'Wax Moth';
-      case Pest.ants: return 'Ants';
-      case Pest.wasps: return 'Wasps';
-      case Pest.mice: return 'Mice';
-      case Pest.other: return 'Other';
-    }
-  }
-
-  String get labelAr {
-    switch (this) {
-      case Pest.smallHiveBeetle: return 'خنفساء الخلية الصغيرة';
-      case Pest.waxMoth: return 'عثة الشمع';
-      case Pest.ants: return 'نمل';
-      case Pest.wasps: return 'دبابير';
-      case Pest.mice: return 'فئران';
-      case Pest.other: return 'أخرى';
+      case Pest.smallHiveBeetle: return l10n.pestSmallHiveBeetle;
+      case Pest.waxMoth: return l10n.pestWaxMoth;
+      case Pest.ants: return l10n.pestAnts;
+      case Pest.wasps: return l10n.pestWasps;
+      case Pest.mice: return l10n.pestMice;
+      case Pest.other: return l10n.pestOther;
     }
   }
 
@@ -241,6 +181,7 @@ extension PestExtension on Pest {
   }
 }
 
+// === ACTION TAKEN ===
 enum ActionTaken {
   addedFrames,
   removedFrames,
@@ -260,43 +201,23 @@ enum ActionTaken {
 }
 
 extension ActionTakenExtension on ActionTaken {
-  String get label {
+  String getLabel(AppLocalizations l10n) {
     switch (this) {
-      case ActionTaken.addedFrames: return 'Added Frames';
-      case ActionTaken.removedFrames: return 'Removed Frames';
-      case ActionTaken.fedSugarSyrup: return 'Fed Sugar Syrup';
-      case ActionTaken.fedPollen: return 'Fed Pollen';
-      case ActionTaken.treatedVarroa: return 'Treated for Varroa';
-      case ActionTaken.treatedDisease: return 'Treated for Disease';
-      case ActionTaken.requeened: return 'Requeened';
-      case ActionTaken.splitHive: return 'Split Hive';
-      case ActionTaken.combinedHives: return 'Combined Hives';
-      case ActionTaken.addedSuper: return 'Added Super';
-      case ActionTaken.removedSuper: return 'Removed Super';
-      case ActionTaken.harvestedHoney: return 'Harvested Honey';
-      case ActionTaken.markedQueen: return 'Marked Queen';
-      case ActionTaken.clippedQueen: return 'Clipped Queen';
-      case ActionTaken.other: return 'Other';
-    }
-  }
-
-  String get labelAr {
-    switch (this) {
-      case ActionTaken.addedFrames: return 'إضافة إطارات';
-      case ActionTaken.removedFrames: return 'إزالة إطارات';
-      case ActionTaken.fedSugarSyrup: return 'تغذية بالشراب';
-      case ActionTaken.fedPollen: return 'تغذية بحبوب اللقاح';
-      case ActionTaken.treatedVarroa: return 'علاج الفاروا';
-      case ActionTaken.treatedDisease: return 'علاج مرض';
-      case ActionTaken.requeened: return 'تبديل الملكة';
-      case ActionTaken.splitHive: return 'تقسيم الخلية';
-      case ActionTaken.combinedHives: return 'دمج الخلايا';
-      case ActionTaken.addedSuper: return 'إضافة عاسلة';
-      case ActionTaken.removedSuper: return 'إزالة عاسلة';
-      case ActionTaken.harvestedHoney: return 'قطف العسل';
-      case ActionTaken.markedQueen: return 'وسم الملكة';
-      case ActionTaken.clippedQueen: return 'قص جناح الملكة';
-      case ActionTaken.other: return 'أخرى';
+      case ActionTaken.addedFrames: return l10n.actionAddedFrames;
+      case ActionTaken.removedFrames: return l10n.actionRemovedFrames;
+      case ActionTaken.fedSugarSyrup: return l10n.actionFedSugarSyrup;
+      case ActionTaken.fedPollen: return l10n.actionFedPollen;
+      case ActionTaken.treatedVarroa: return l10n.actionTreatedVarroa;
+      case ActionTaken.treatedDisease: return l10n.actionTreatedDisease;
+      case ActionTaken.requeened: return l10n.actionRequeened;
+      case ActionTaken.splitHive: return l10n.actionSplitHive;
+      case ActionTaken.combinedHives: return l10n.actionCombinedHives;
+      case ActionTaken.addedSuper: return l10n.actionAddedSuper;
+      case ActionTaken.removedSuper: return l10n.actionRemovedSuper;
+      case ActionTaken.harvestedHoney: return l10n.actionHarvestedHoney;
+      case ActionTaken.markedQueen: return l10n.actionMarkedQueen;
+      case ActionTaken.clippedQueen: return l10n.actionClippedQueen;
+      case ActionTaken.other: return l10n.actionOther;
     }
   }
 
@@ -321,6 +242,7 @@ extension ActionTakenExtension on ActionTaken {
   }
 }
 
+// === INSPECTION IMAGE TYPE ===
 enum InspectionImageType {
   queen,
   brood,
@@ -334,31 +256,17 @@ enum InspectionImageType {
 }
 
 extension InspectionImageTypeExtension on InspectionImageType {
-  String get label {
+  String getLabel(AppLocalizations l10n) {
     switch (this) {
-      case InspectionImageType.queen: return 'Queen';
-      case InspectionImageType.brood: return 'Brood';
-      case InspectionImageType.eggs: return 'Eggs';
-      case InspectionImageType.larvae: return 'Larvae';
-      case InspectionImageType.honey: return 'Honey';
-      case InspectionImageType.pollen: return 'Pollen';
-      case InspectionImageType.disease: return 'Disease';
-      case InspectionImageType.pest: return 'Pest';
-      case InspectionImageType.general: return 'General';
-    }
-  }
-
-  String get labelAr {
-    switch (this) {
-      case InspectionImageType.queen: return 'الملكة';
-      case InspectionImageType.brood: return 'الحضنة';
-      case InspectionImageType.eggs: return 'البيض';
-      case InspectionImageType.larvae: return 'اليرقات';
-      case InspectionImageType.honey: return 'العسل';
-      case InspectionImageType.pollen: return 'حبوب اللقاح';
-      case InspectionImageType.disease: return 'مرض';
-      case InspectionImageType.pest: return 'آفة';
-      case InspectionImageType.general: return 'عام';
+      case InspectionImageType.queen: return l10n.imageTypeQueen;
+      case InspectionImageType.brood: return l10n.imageTypeBrood;
+      case InspectionImageType.eggs: return l10n.imageTypeEggs;
+      case InspectionImageType.larvae: return l10n.imageTypeLarvae;
+      case InspectionImageType.honey: return l10n.imageTypeHoney;
+      case InspectionImageType.pollen: return l10n.imageTypePollen;
+      case InspectionImageType.disease: return l10n.imageTypeDisease;
+      case InspectionImageType.pest: return l10n.imageTypePest;
+      case InspectionImageType.general: return l10n.imageTypeGeneral;
     }
   }
 
@@ -377,10 +285,12 @@ extension InspectionImageTypeExtension on InspectionImageType {
   }
 }
 
+// === INSPECTION IMAGE MODEL ===
 class InspectionImage {
   final String id;
   final String inspectionId;
-  final String imagePath;
+  final String imageUrl;
+  final String storagePath;
   final InspectionImageType type;
   final DateTime takenAt;
   final String? note;
@@ -388,7 +298,8 @@ class InspectionImage {
   InspectionImage({
     required this.id,
     required this.inspectionId,
-    required this.imagePath,
+    required this.imageUrl,
+    required this.storagePath,
     required this.type,
     required this.takenAt,
     this.note,
@@ -396,66 +307,93 @@ class InspectionImage {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
       'inspectionId': inspectionId,
-      'imagePath': imagePath,
+      'imageUrl': imageUrl,
+      'storagePath': storagePath,
       'type': type.index,
-      'takenAt': takenAt.toIso8601String(),
+      'takenAt': Timestamp.fromDate(takenAt),
       'note': note,
     };
   }
 
-  factory InspectionImage.fromMap(Map<String, dynamic> map) {
+  factory InspectionImage.fromDocument(DocumentSnapshot doc) {
+    final data = doc.data() as Map<String, dynamic>;
     return InspectionImage(
-      id: map['id'],
-      inspectionId: map['inspectionId'],
-      imagePath: map['imagePath'],
-      type: InspectionImageType.values[map['type']],
-      takenAt: DateTime.parse(map['takenAt']),
-      note: map['note'],
+      id: doc.id,
+      inspectionId: data['inspectionId'] ?? '',
+      imageUrl: data['imageUrl'] ?? '',
+      storagePath: data['storagePath'] ?? '',
+      type: InspectionImageType.values[data['type'] ?? 8],
+      takenAt: (data['takenAt'] as Timestamp).toDate(),
+      note: data['note'],
+    );
+  }
+
+  InspectionImage copyWith({
+    String? id,
+    String? inspectionId,
+    String? imageUrl,
+    String? storagePath,
+    InspectionImageType? type,
+    DateTime? takenAt,
+    String? note,
+  }) {
+    return InspectionImage(
+      id: id ?? this.id,
+      inspectionId: inspectionId ?? this.inspectionId,
+      imageUrl: imageUrl ?? this.imageUrl,
+      storagePath: storagePath ?? this.storagePath,
+      type: type ?? this.type,
+      takenAt: takenAt ?? this.takenAt,
+      note: note ?? this.note,
     );
   }
 }
 
+// === INSPECTION MODEL ===
 class Inspection {
   final String id;
   final String beehiveId;
-  
+  final String apiaryId;
+  final String userId;
+
   final DateTime inspectionDate;
   final WeatherCondition? weather;
   final double? temperature;
   final String? inspectorName;
-  
+
   final bool queenSeen;
   final bool queenCellsSeen;
   final bool eggsSeen;
   final bool larvaeSeen;
   final BroodPattern? broodPattern;
-  
+
   final PopulationStrength? populationStrength;
   final int? framesOfBees;
   final int? framesOfBrood;
-  
+
   final StoresLevel? honeyStores;
   final StoresLevel? pollenStores;
   final bool needsFeeding;
-  
+
   final Temperament? temperament;
   final List<Disease> diseasesObserved;
   final List<Pest> pestsObserved;
-  
+
   final List<ActionTaken> actionsTaken;
   final String? actionNotes;
-  
+
   final List<InspectionImage> images;
   final String? notes;
-  
+
   final DateTime createdAt;
   final DateTime updatedAt;
 
   Inspection({
     required this.id,
     required this.beehiveId,
+    required this.apiaryId,
+    required this.userId,
     required this.inspectionDate,
     this.weather,
     this.temperature,
@@ -482,10 +420,11 @@ class Inspection {
     required this.updatedAt,
   });
 
+  // Helper getters
   bool get hasHealthIssues => diseasesObserved.isNotEmpty || pestsObserved.isNotEmpty;
   bool get hasActions => actionsTaken.isNotEmpty;
   bool get hasImages => images.isNotEmpty;
-  
+
   String get quickSummary {
     List<String> items = [];
     if (queenSeen) items.add('👑');
@@ -496,95 +435,98 @@ class Inspection {
     return items.join(' ');
   }
 
+  // Convert to Firestore map
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
       'beehiveId': beehiveId,
-      'inspectionDate': inspectionDate.toIso8601String(),
+      'apiaryId': apiaryId,
+      'userId': userId,
+      'inspectionDate': Timestamp.fromDate(inspectionDate),
       'weather': weather?.index,
       'temperature': temperature,
       'inspectorName': inspectorName,
-      'queenSeen': queenSeen ? 1 : 0,
-      'queenCellsSeen': queenCellsSeen ? 1 : 0,
-      'eggsSeen': eggsSeen ? 1 : 0,
-      'larvaeSeen': larvaeSeen ? 1 : 0,
+      'queenSeen': queenSeen,
+      'queenCellsSeen': queenCellsSeen,
+      'eggsSeen': eggsSeen,
+      'larvaeSeen': larvaeSeen,
       'broodPattern': broodPattern?.index,
       'populationStrength': populationStrength?.index,
       'framesOfBees': framesOfBees,
       'framesOfBrood': framesOfBrood,
       'honeyStores': honeyStores?.index,
       'pollenStores': pollenStores?.index,
-      'needsFeeding': needsFeeding ? 1 : 0,
+      'needsFeeding': needsFeeding,
       'temperament': temperament?.index,
-      'diseasesObserved': diseasesObserved.map((d) => d.index).toList().join(','),
-      'pestsObserved': pestsObserved.map((p) => p.index).toList().join(','),
-      'actionsTaken': actionsTaken.map((a) => a.index).toList().join(','),
+      'diseasesObserved': diseasesObserved.map((d) => d.index).toList(),
+      'pestsObserved': pestsObserved.map((p) => p.index).toList(),
+      'actionsTaken': actionsTaken.map((a) => a.index).toList(),
       'actionNotes': actionNotes,
       'notes': notes,
-      'createdAt': createdAt.toIso8601String(),
-      'updatedAt': updatedAt.toIso8601String(),
+      'createdAt': Timestamp.fromDate(createdAt),
+      'updatedAt': Timestamp.fromDate(updatedAt),
     };
   }
 
-  factory Inspection.fromMap(Map<String, dynamic> map, {List<InspectionImage>? images}) {
+  // Create from Firestore document
+  factory Inspection.fromDocument(DocumentSnapshot doc, {List<InspectionImage>? images}) {
+    final data = doc.data() as Map<String, dynamic>;
     return Inspection(
-      id: map['id'],
-      beehiveId: map['beehiveId'],
-      inspectionDate: DateTime.parse(map['inspectionDate']),
-      weather: map['weather'] != null ? WeatherCondition.values[map['weather']] : null,
-      temperature: map['temperature']?.toDouble(),
-      inspectorName: map['inspectorName'],
-      queenSeen: map['queenSeen'] == 1,
-      queenCellsSeen: map['queenCellsSeen'] == 1,
-      eggsSeen: map['eggsSeen'] == 1,
-      larvaeSeen: map['larvaeSeen'] == 1,
-      broodPattern: map['broodPattern'] != null 
-          ? BroodPattern.values[map['broodPattern']] 
+      id: doc.id,
+      beehiveId: data['beehiveId'] ?? '',
+      apiaryId: data['apiaryId'] ?? '',
+      userId: data['userId'] ?? '',
+      inspectionDate: (data['inspectionDate'] as Timestamp).toDate(),
+      weather: data['weather'] != null ? WeatherCondition.values[data['weather']] : null,
+      temperature: data['temperature']?.toDouble(),
+      inspectorName: data['inspectorName'],
+      queenSeen: data['queenSeen'] ?? false,
+      queenCellsSeen: data['queenCellsSeen'] ?? false,
+      eggsSeen: data['eggsSeen'] ?? false,
+      larvaeSeen: data['larvaeSeen'] ?? false,
+      broodPattern: data['broodPattern'] != null
+          ? BroodPattern.values[data['broodPattern']]
           : null,
-      populationStrength: map['populationStrength'] != null 
-          ? PopulationStrength.values[map['populationStrength']] 
+      populationStrength: data['populationStrength'] != null
+          ? PopulationStrength.values[data['populationStrength']]
           : null,
-      framesOfBees: map['framesOfBees'],
-      framesOfBrood: map['framesOfBrood'],
-      honeyStores: map['honeyStores'] != null 
-          ? StoresLevel.values[map['honeyStores']] 
+      framesOfBees: data['framesOfBees'],
+      framesOfBrood: data['framesOfBrood'],
+      honeyStores: data['honeyStores'] != null
+          ? StoresLevel.values[data['honeyStores']]
           : null,
-      pollenStores: map['pollenStores'] != null 
-          ? StoresLevel.values[map['pollenStores']] 
+      pollenStores: data['pollenStores'] != null
+          ? StoresLevel.values[data['pollenStores']]
           : null,
-      needsFeeding: map['needsFeeding'] == 1,
-      temperament: map['temperament'] != null 
-          ? Temperament.values[map['temperament']] 
+      needsFeeding: data['needsFeeding'] ?? false,
+      temperament: data['temperament'] != null
+          ? Temperament.values[data['temperament']]
           : null,
-      diseasesObserved: map['diseasesObserved'] != null && map['diseasesObserved'].toString().isNotEmpty
-          ? map['diseasesObserved'].toString()
-              .split(',')
-              .map((e) => Disease.values[int.parse(e)])
-              .toList()
-          : [],
-      pestsObserved: map['pestsObserved'] != null && map['pestsObserved'].toString().isNotEmpty
-          ? map['pestsObserved'].toString()
-              .split(',')
-              .map((e) => Pest.values[int.parse(e)])
-              .toList()
-          : [],
-      actionsTaken: map['actionsTaken'] != null && map['actionsTaken'].toString().isNotEmpty
-          ? map['actionsTaken'].toString()
-              .split(',')
-              .map((e) => ActionTaken.values[int.parse(e)])
-              .toList()
-          : [],
-      actionNotes: map['actionNotes'],
+      diseasesObserved: (data['diseasesObserved'] as List<dynamic>?)
+              ?.map((e) => Disease.values[e as int])
+              .toList() ??
+          [],
+      pestsObserved: (data['pestsObserved'] as List<dynamic>?)
+              ?.map((e) => Pest.values[e as int])
+              .toList() ??
+          [],
+      actionsTaken: (data['actionsTaken'] as List<dynamic>?)
+              ?.map((e) => ActionTaken.values[e as int])
+              .toList() ??
+          [],
+      actionNotes: data['actionNotes'],
       images: images ?? [],
-      notes: map['notes'],
-      createdAt: DateTime.parse(map['createdAt']),
-      updatedAt: DateTime.parse(map['updatedAt']),
+      notes: data['notes'],
+      createdAt: (data['createdAt'] as Timestamp).toDate(),
+      updatedAt: (data['updatedAt'] as Timestamp).toDate(),
     );
   }
 
+  // Copy with
   Inspection copyWith({
     String? id,
     String? beehiveId,
+    String? apiaryId,
+    String? userId,
     DateTime? inspectionDate,
     WeatherCondition? weather,
     double? temperature,
@@ -613,6 +555,8 @@ class Inspection {
     return Inspection(
       id: id ?? this.id,
       beehiveId: beehiveId ?? this.beehiveId,
+      apiaryId: apiaryId ?? this.apiaryId,
+      userId: userId ?? this.userId,
       inspectionDate: inspectionDate ?? this.inspectionDate,
       weather: weather ?? this.weather,
       temperature: temperature ?? this.temperature,
@@ -639,4 +583,13 @@ class Inspection {
       updatedAt: updatedAt ?? this.updatedAt,
     );
   }
+
+  @override
+  String toString() => 'Inspection(id: $id, beehiveId: $beehiveId, date: $inspectionDate)';
+
+  @override
+  bool operator ==(Object other) => identical(this, other) || (other is Inspection && other.id == id);
+
+  @override
+  int get hashCode => id.hashCode;
 }

@@ -1,3 +1,7 @@
+// lib/features/beehives/models/beehive_image_model.dart
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 enum ImageType {
   queen,
   brood,
@@ -45,7 +49,8 @@ extension ImageTypeExtension on ImageType {
 class BeehiveImage {
   final String id;
   final String beehiveId;
-  final String imagePath;
+  final String imageUrl;      // Firebase Storage URL
+  final String storagePath;   // Path in Firebase Storage (for deletion)
   final ImageType type;
   final DateTime takenAt;
   final String? note;
@@ -53,7 +58,8 @@ class BeehiveImage {
   BeehiveImage({
     required this.id,
     required this.beehiveId,
-    required this.imagePath,
+    required this.imageUrl,
+    required this.storagePath,
     required this.type,
     required this.takenAt,
     this.note,
@@ -61,23 +67,45 @@ class BeehiveImage {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
       'beehiveId': beehiveId,
-      'imagePath': imagePath,
+      'imageUrl': imageUrl,
+      'storagePath': storagePath,
       'type': type.index,
-      'takenAt': takenAt.toIso8601String(),
+      'takenAt': Timestamp.fromDate(takenAt),
       'note': note,
     };
   }
 
-  factory BeehiveImage.fromMap(Map<String, dynamic> map) {
+  factory BeehiveImage.fromDocument(DocumentSnapshot doc) {
+    final data = doc.data() as Map<String, dynamic>;
     return BeehiveImage(
-      id: map['id'],
-      beehiveId: map['beehiveId'],
-      imagePath: map['imagePath'],
-      type: ImageType.values[map['type']],
-      takenAt: DateTime.parse(map['takenAt']),
-      note: map['note'],
+      id: doc.id,
+      beehiveId: data['beehiveId'] ?? '',
+      imageUrl: data['imageUrl'] ?? '',
+      storagePath: data['storagePath'] ?? '',
+      type: ImageType.values[data['type'] ?? 5],
+      takenAt: (data['takenAt'] as Timestamp).toDate(),
+      note: data['note'],
+    );
+  }
+
+  BeehiveImage copyWith({
+    String? id,
+    String? beehiveId,
+    String? imageUrl,
+    String? storagePath,
+    ImageType? type,
+    DateTime? takenAt,
+    String? note,
+  }) {
+    return BeehiveImage(
+      id: id ?? this.id,
+      beehiveId: beehiveId ?? this.beehiveId,
+      imageUrl: imageUrl ?? this.imageUrl,
+      storagePath: storagePath ?? this.storagePath,
+      type: type ?? this.type,
+      takenAt: takenAt ?? this.takenAt,
+      note: note ?? this.note,
     );
   }
 }

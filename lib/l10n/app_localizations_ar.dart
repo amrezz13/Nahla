@@ -51,7 +51,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get weatherMainlyClear => 'صافية في الغالب';
 
   @override
-  String get weatherPartlyCloudy => 'غائمة جزئياً';
+  String get weatherPartlyCloudy => 'غائم جزئياً';
 
   @override
   String get weatherOvercast => 'غائمة';
@@ -63,7 +63,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get weatherDrizzle => 'رذاذ';
 
   @override
-  String get weatherRainy => 'ممطرة';
+  String get weatherRainy => 'ماطر';
 
   @override
   String get weatherFreezingRain => 'مطر متجمد';
@@ -474,7 +474,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get imageTypeFrames => 'الإطارات';
 
   @override
-  String get imageTypeDisease => 'مرض/مشكلة';
+  String get imageTypeDisease => 'مرض';
 
   @override
   String get imageTypeGeneral => 'عام';
@@ -830,4 +830,160 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get memberSince => 'عضو منذ';
+
+  @override
+  String get weatherSunny => 'مشمس';
+
+  @override
+  String get weatherCloudy => 'غائم';
+
+  @override
+  String get weatherWindy => 'عاصف';
+
+  @override
+  String get weatherHot => 'حار';
+
+  @override
+  String get weatherCold => 'بارد';
+
+  @override
+  String get broodExcellent => 'ممتاز';
+
+  @override
+  String get broodGood => 'جيد';
+
+  @override
+  String get broodSpotty => 'متقطع';
+
+  @override
+  String get broodPoor => 'ضعيف';
+
+  @override
+  String get broodNone => 'لا يوجد';
+
+  @override
+  String get populationStrong => 'قوي';
+
+  @override
+  String get populationMedium => 'متوسط';
+
+  @override
+  String get populationWeak => 'ضعيف';
+
+  @override
+  String get populationVeryWeak => 'ضعيف جداً';
+
+  @override
+  String get storesLow => 'منخفض';
+
+  @override
+  String get storesAdequate => 'كافٍ';
+
+  @override
+  String get storesHigh => 'مرتفع';
+
+  @override
+  String get temperamentCalm => 'هادئ';
+
+  @override
+  String get temperamentNervous => 'عصبي';
+
+  @override
+  String get temperamentAggressive => 'عدواني';
+
+  @override
+  String get diseaseVarroa => 'حلم الفاروا';
+
+  @override
+  String get diseaseAmericanFoulbrood => 'تعفن الحضنة الأمريكي';
+
+  @override
+  String get diseaseEuropeanFoulbrood => 'تعفن الحضنة الأوروبي';
+
+  @override
+  String get diseaseNosema => 'النوزيما';
+
+  @override
+  String get diseaseChalkbrood => 'الحضنة الطباشيرية';
+
+  @override
+  String get diseaseSacbrood => 'الحضنة الكيسية';
+
+  @override
+  String get diseaseOther => 'أخرى';
+
+  @override
+  String get pestSmallHiveBeetle => 'خنفساء الخلية الصغيرة';
+
+  @override
+  String get pestWaxMoth => 'عثة الشمع';
+
+  @override
+  String get pestAnts => 'نمل';
+
+  @override
+  String get pestWasps => 'دبابير';
+
+  @override
+  String get pestMice => 'فئران';
+
+  @override
+  String get pestOther => 'أخرى';
+
+  @override
+  String get actionAddedFrames => 'إضافة إطارات';
+
+  @override
+  String get actionRemovedFrames => 'إزالة إطارات';
+
+  @override
+  String get actionFedSugarSyrup => 'تغذية بالشراب';
+
+  @override
+  String get actionFedPollen => 'تغذية بحبوب اللقاح';
+
+  @override
+  String get actionTreatedVarroa => 'علاج الفاروا';
+
+  @override
+  String get actionTreatedDisease => 'علاج مرض';
+
+  @override
+  String get actionRequeened => 'تبديل الملكة';
+
+  @override
+  String get actionSplitHive => 'تقسيم الخلية';
+
+  @override
+  String get actionCombinedHives => 'دمج الخلايا';
+
+  @override
+  String get actionAddedSuper => 'إضافة عاسلة';
+
+  @override
+  String get actionRemovedSuper => 'إزالة عاسلة';
+
+  @override
+  String get actionHarvestedHoney => 'قطف العسل';
+
+  @override
+  String get actionMarkedQueen => 'وسم الملكة';
+
+  @override
+  String get actionClippedQueen => 'قص جناح الملكة';
+
+  @override
+  String get actionOther => 'أخرى';
+
+  @override
+  String get imageTypeEggs => 'البيض';
+
+  @override
+  String get imageTypeLarvae => 'اليرقات';
+
+  @override
+  String get imageTypePollen => 'حبوب اللقاح';
+
+  @override
+  String get imageTypePest => 'آفة';
 }

@@ -1,22 +1,30 @@
+// lib/features/apiaries/models/apiary.dart
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Apiary {
   final String id;
   final String name;
-  final String? imagePath;
+  final String location;
   final double? latitude;
   final double? longitude;
-  final int hiveCount;
-  final DateTime createdAt;
   final String? notes;
+  final String? imageUrl;
+  final DateTime createdAt;
+  final String userId;
+  final int hiveCount;
 
   Apiary({
     required this.id,
     required this.name,
-    this.imagePath,
+    required this.location,
     this.latitude,
     this.longitude,
-    this.hiveCount = 0,
-    required this.createdAt,
     this.notes,
+    this.imageUrl,
+    required this.createdAt,
+    required this.userId,
+    this.hiveCount = 0,
   });
 
   // Get location string
@@ -24,60 +32,106 @@ class Apiary {
     if (latitude != null && longitude != null) {
       return 'Lat: ${latitude!.toStringAsFixed(4)}, Lon: ${longitude!.toStringAsFixed(4)}';
     }
-    return 'No location';
+    return location.isNotEmpty ? location : 'No location';
   }
 
-  // Check if has location
-  bool get hasLocation => latitude != null && longitude != null;
+  // Check if has coordinates
+  bool get hasCoordinates => latitude != null && longitude != null;
+
+  // Check if has location (address or coordinates)
+  bool get hasLocation => location.isNotEmpty || hasCoordinates;
 
   // Check if has image
-  bool get hasImage => imagePath != null && imagePath!.isNotEmpty;
+  bool get hasImage => imageUrl != null && imageUrl!.isNotEmpty;
 
+  // Convert to Firestore map
+  Map<String, dynamic> toMap() {
+    return {
+      'name': name,
+      'location': location,
+      'latitude': latitude,
+      'longitude': longitude,
+      'notes': notes,
+      'imageUrl': imageUrl,
+      'createdAt': Timestamp.fromDate(createdAt),
+      'userId': userId,
+      'hiveCount': hiveCount,
+    };
+  }
+
+  // Create from Firestore document
+  factory Apiary.fromDocument(DocumentSnapshot doc) {
+    final data = doc.data() as Map<String, dynamic>;
+    return Apiary(
+      id: doc.id,
+      name: data['name'] ?? '',
+      location: data['location'] ?? '',
+      latitude: data['latitude']?.toDouble(),
+      longitude: data['longitude']?.toDouble(),
+      notes: data['notes'],
+      imageUrl: data['imageUrl'],
+      createdAt: (data['createdAt'] as Timestamp).toDate(),
+      userId: data['userId'] ?? '',
+      hiveCount: data['hiveCount'] ?? 0,
+    );
+  }
+
+  // Create from Map (for local storage or JSON)
+  factory Apiary.fromMap(Map<String, dynamic> map) {
+    return Apiary(
+      id: map['id'] ?? '',
+      name: map['name'] ?? '',
+      location: map['location'] ?? '',
+      latitude: map['latitude']?.toDouble(),
+      longitude: map['longitude']?.toDouble(),
+      notes: map['notes'],
+      imageUrl: map['imageUrl'],
+      createdAt: map['createdAt'] is Timestamp
+          ? (map['createdAt'] as Timestamp).toDate()
+          : DateTime.parse(map['createdAt']),
+      userId: map['userId'] ?? '',
+      hiveCount: map['hiveCount'] ?? 0,
+    );
+  }
+
+  // Copy with new values
   Apiary copyWith({
     String? id,
     String? name,
-    String? imagePath,
+    String? location,
     double? latitude,
     double? longitude,
-    int? hiveCount,
-    DateTime? createdAt,
     String? notes,
+    String? imageUrl,
+    DateTime? createdAt,
+    String? userId,
+    int? hiveCount,
   }) {
     return Apiary(
       id: id ?? this.id,
       name: name ?? this.name,
-      imagePath: imagePath ?? this.imagePath,
+      location: location ?? this.location,
       latitude: latitude ?? this.latitude,
       longitude: longitude ?? this.longitude,
-      hiveCount: hiveCount ?? this.hiveCount,
-      createdAt: createdAt ?? this.createdAt,
       notes: notes ?? this.notes,
+      imageUrl: imageUrl ?? this.imageUrl,
+      createdAt: createdAt ?? this.createdAt,
+      userId: userId ?? this.userId,
+      hiveCount: hiveCount ?? this.hiveCount,
     );
   }
 
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'name': name,
-      'imagePath': imagePath,
-      'latitude': latitude,
-      'longitude': longitude,
-      'hiveCount': hiveCount,
-      'createdAt': createdAt.toIso8601String(),
-      'notes': notes,
-    };
+  @override
+  String toString() {
+    return 'Apiary(id: $id, name: $name, location: $location, hiveCount: $hiveCount)';
   }
 
-  factory Apiary.fromMap(Map<String, dynamic> map) {
-    return Apiary(
-      id: map['id'],
-      name: map['name'],
-      imagePath: map['imagePath'],
-      latitude: map['latitude'],
-      longitude: map['longitude'],
-      hiveCount: map['hiveCount'] ?? 0,
-      createdAt: DateTime.parse(map['createdAt']),
-      notes: map['notes'],
-    );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is Apiary && other.id == id;
   }
+
+  @override
+  int get hashCode => id.hashCode;
 }

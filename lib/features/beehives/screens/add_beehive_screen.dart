@@ -48,18 +48,18 @@ class _AddBeehiveScreenState extends State<AddBeehiveScreen> {
     super.dispose();
   }
 
-  void _addImage(String imagePath, ImageType type) {
-    setState(() {
-      _images.add(BeehiveImage(
-        id: _uuid.v4(),
-        beehiveId: '',
-        imagePath: imagePath,
-        type: type,
-        takenAt: DateTime.now(),
-      ));
-    });
-  }
-
+void _addImage(String imagePath, ImageType type) {
+  setState(() {
+    _images.add(BeehiveImage(
+      id: _uuid.v4(),
+      beehiveId: '',
+      imageUrl: '',           // Will be set after upload
+      storagePath: imagePath, // Temporarily store local path here
+      type: type,
+      takenAt: DateTime.now(),
+    ));
+  });
+}
   void _removeImage(String imageId) {
     setState(() {
       _images.removeWhere((img) => img.id == imageId);
@@ -78,32 +78,32 @@ class _AddBeehiveScreenState extends State<AddBeehiveScreen> {
     }
   }
 
-  void _saveBeehive() {
-    if (!_formKey.currentState!.validate()) return;
+void _saveBeehive() {
+  if (!_formKey.currentState!.validate()) return;
 
-    final beehive = Beehive(
-      id: _uuid.v4(),
-      apiaryId: widget.apiaryId,
-      systemNumber: widget.nextSystemNumber,
-      hiveNumber: _hiveNumberController.text.trim(),
-      name: _nameController.text.trim().isEmpty ? null : _nameController.text.trim(),
-      frameCount: _frameCount,
-      hasQueen: _hasQueen,
-      queenType: _hasQueen ? _queenType : null,
-      queenBreed: _hasQueen ? _queenBreed : null,
-      queenAddedDate: _hasQueen ? _queenAddedDate : null,
-      isQueenMarked: _hasQueen ? _isQueenMarked : false,
-      queenMarkingColor: _hasQueen && _isQueenMarked ? _queenMarkingColor : null,
-      healthStatus: _healthStatus,
-      images: _images,
-      notes: _notesController.text.trim().isEmpty ? null : _notesController.text.trim(),
-      createdAt: DateTime.now(),
-      updatedAt: DateTime.now(),
-    );
+  final beehive = Beehive(
+    id: _uuid.v4(),
+    apiaryId: widget.apiaryId,
+    userId: '',  // Will be set by the service
+    systemNumber: widget.nextSystemNumber,
+    hiveNumber: _hiveNumberController.text.trim(),
+    name: _nameController.text.trim().isEmpty ? null : _nameController.text.trim(),
+    frameCount: _frameCount,
+    hasQueen: _hasQueen,
+    queenType: _hasQueen ? _queenType : null,
+    queenBreed: _hasQueen ? _queenBreed : null,
+    queenAddedDate: _hasQueen ? _queenAddedDate : null,
+    isQueenMarked: _hasQueen ? _isQueenMarked : false,
+    queenMarkingColor: _hasQueen && _isQueenMarked ? _queenMarkingColor : null,
+    healthStatus: _healthStatus,
+    images: _images,
+    notes: _notesController.text.trim().isEmpty ? null : _notesController.text.trim(),
+    createdAt: DateTime.now(),
+    updatedAt: DateTime.now(),
+  );
 
-    Navigator.pop(context, beehive);
-  }
-
+  Navigator.pop(context, beehive);
+}
   // === LOCALIZED LABEL HELPERS ===
   
   String _getQueenTypeLabel(QueenType type, AppLocalizations l10n) {

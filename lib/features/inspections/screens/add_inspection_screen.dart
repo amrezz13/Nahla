@@ -9,11 +9,15 @@ import '../models/inspection_model.dart';
 class AddInspectionScreen extends StatefulWidget {
   final String beehiveId;
   final String beehiveName;
+    final String apiaryId;  
+
 
   const AddInspectionScreen({
     super.key,
     required this.beehiveId,
     required this.beehiveName,
+        required this.apiaryId,  
+
   });
 
   @override
@@ -133,18 +137,21 @@ class _AddInspectionScreenState extends State<AddInspectionScreen> {
     final type = await _showImageTypeSelector();
     if (type == null) return;
 
-    setState(() {
-      _images.add(InspectionImage(
-        id: _uuid.v4(),
-        inspectionId: '',
-        imagePath: pickedFile.path,
-        type: type,
-        takenAt: DateTime.now(),
-      ));
-    });
+setState(() {
+  _images.add(InspectionImage(
+    id: _uuid.v4(),
+    inspectionId: '',
+    imageUrl: pickedFile.path,      // Local path for preview
+    storagePath: pickedFile.path,   // Same path for now
+    type: type,
+    takenAt: DateTime.now(),
+  ));
+});
   }
 
   Future<InspectionImageType?> _showImageTypeSelector() async {
+      final l10n = AppLocalizations.of(context)!; 
+
     return showModalBottomSheet<InspectionImageType>(
       context: context,
       builder: (context) => SafeArea(
@@ -166,7 +173,7 @@ class _AddInspectionScreenState extends State<AddInspectionScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 4),
                   child: ActionChip(
                     avatar: Text(type.emoji),
-                    label: Text(type.label),
+                    label: Text(type.getLabel(l10n)),
                     onPressed: () => Navigator.pop(context, type),
                   ),
                 );
@@ -199,6 +206,8 @@ class _AddInspectionScreenState extends State<AddInspectionScreen> {
     final inspection = Inspection(
       id: _uuid.v4(),
       beehiveId: widget.beehiveId,
+       apiaryId: widget.apiaryId,  
+  userId: '',              
       inspectionDate: inspectionDateTime,
       weather: _weather,
       temperature: _temperatureController.text.isNotEmpty
@@ -341,7 +350,7 @@ class _AddInspectionScreenState extends State<AddInspectionScreen> {
                   children: WeatherCondition.values.map((weather) {
                     final isSelected = _weather == weather;
                     return ChoiceChip(
-                      label: Text('${weather.emoji} ${weather.label}'),
+                      label: Text('${weather.emoji} ${weather.getLabel(l10n)}'),
                       selected: isSelected,
                       onSelected: (selected) {
                         setState(() => _weather = selected ? weather : null);
@@ -418,7 +427,7 @@ class _AddInspectionScreenState extends State<AddInspectionScreen> {
                   children: BroodPattern.values.map((pattern) {
                     final isSelected = _broodPattern == pattern;
                     return ChoiceChip(
-                      label: Text('${pattern.emoji} ${pattern.label}'),
+                      label: Text('${pattern.emoji} ${pattern.getLabel(l10n)}'),
                       selected: isSelected,
                       onSelected: (selected) {
                         setState(() => _broodPattern = selected ? pattern : null);
@@ -450,7 +459,7 @@ class _AddInspectionScreenState extends State<AddInspectionScreen> {
                   children: PopulationStrength.values.map((strength) {
                     final isSelected = _populationStrength == strength;
                     return ChoiceChip(
-                      label: Text('${strength.emoji} ${strength.label}'),
+                      label: Text('${strength.emoji} ${strength.getLabel(l10n)}'),
                       selected: isSelected,
                       onSelected: (selected) {
                         setState(() => _populationStrength = selected ? strength : null);
@@ -553,7 +562,7 @@ class _AddInspectionScreenState extends State<AddInspectionScreen> {
                   children: Temperament.values.map((temp) {
                     final isSelected = _temperament == temp;
                     return ChoiceChip(
-                      label: Text('${temp.emoji} ${temp.label}'),
+                      label: Text('${temp.emoji} ${temp.getLabel(l10n)}'),
                       selected: isSelected,
                       onSelected: (selected) {
                         setState(() => _temperament = selected ? temp : null);
@@ -578,7 +587,7 @@ class _AddInspectionScreenState extends State<AddInspectionScreen> {
                   children: Disease.values.map((disease) {
                     final isSelected = _diseasesObserved.contains(disease);
                     return FilterChip(
-                      label: Text(disease.label),
+                      label: Text(disease.getLabel(l10n)),
                       selected: isSelected,
                       selectedColor: Colors.red.withOpacity(0.2),
                       checkmarkColor: Colors.red,
@@ -611,7 +620,7 @@ class _AddInspectionScreenState extends State<AddInspectionScreen> {
                   children: Pest.values.map((pest) {
                     final isSelected = _pestsObserved.contains(pest);
                     return FilterChip(
-                      label: Text('${pest.emoji} ${pest.label}'),
+                      label: Text('${pest.emoji} ${pest.getLabel(l10n)}'),
                       selected: isSelected,
                       selectedColor: Colors.orange.withOpacity(0.2),
                       checkmarkColor: Colors.orange,
@@ -643,7 +652,7 @@ class _AddInspectionScreenState extends State<AddInspectionScreen> {
                   children: ActionTaken.values.map((action) {
                     final isSelected = _actionsTaken.contains(action);
                     return FilterChip(
-                      label: Text('${action.emoji} ${action.label}'),
+                      label: Text('${action.emoji} ${action.getLabel(l10n)}'),
                       selected: isSelected,
                       selectedColor: Colors.blue.withOpacity(0.2),
                       checkmarkColor: Colors.blue,
@@ -717,7 +726,7 @@ class _AddInspectionScreenState extends State<AddInspectionScreen> {
                           ClipRRect(
                             borderRadius: BorderRadius.circular(8),
                             child: Image.file(
-                              File(image.imagePath),
+                              File(image.imageUrl),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -927,6 +936,8 @@ class _ToggleRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+      final l10n = AppLocalizations.of(context)!;  
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(

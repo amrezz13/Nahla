@@ -331,7 +331,7 @@ class _BeehiveDetailScreenState extends State<BeehiveDetailScreen> {
             final image = beehive.images[index];
             return GestureDetector(
               onTap: () => _showFullScreenImage(context, index),
-              child: Image.file(File(image.imagePath), fit: BoxFit.cover),
+              child: Image.file(File(image.imageUrl), fit: BoxFit.cover),
             );
           },
         ),
@@ -807,7 +807,7 @@ class _BeehiveDetailScreenState extends State<BeehiveDetailScreen> {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(8),
                       child: Image.file(
-                        File(image.imagePath),
+                        File(image.imageUrl),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -855,6 +855,8 @@ Widget _buildActionButtons(
                 builder: (context) => AddInspectionScreen(
                   beehiveId: widget.beehive.id,
                   beehiveName: widget.beehive.name ?? '${l10n.hive} #${widget.beehive.systemNumber}',
+               
+                 apiaryId: widget.beehive.apiaryId, 
                 ),
               ),
             );
@@ -884,6 +886,8 @@ Widget _buildActionButtons(
                 builder: (context) => InspectionsListScreen(
                   beehiveId: widget.beehive.id,
                   beehiveName: widget.beehive.name ?? '${l10n.hive} #${widget.beehive.systemNumber}',
+               
+                 apiaryId: widget.beehive.apiaryId,  
                 ),
               ),
             );
@@ -999,7 +1003,7 @@ class _FullScreenImageViewerState extends State<_FullScreenImageViewer> {
             maxScale: 4.0,
             child: Center(
               child: Image.file(
-                File(widget.images[index].imagePath),
+                File(widget.images[index].imageUrl),
                 fit: BoxFit.contain,
               ),
             ),

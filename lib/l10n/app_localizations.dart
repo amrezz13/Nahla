@@ -187,7 +187,7 @@ abstract class AppLocalizations {
   /// No description provided for @weatherPartlyCloudy.
   ///
   /// In en, this message translates to:
-  /// **'Partly cloudy'**
+  /// **'Partly Cloudy'**
   String get weatherPartlyCloudy;
 
   /// No description provided for @weatherOvercast.
@@ -1009,7 +1009,7 @@ abstract class AppLocalizations {
   /// No description provided for @imageTypeBrood.
   ///
   /// In en, this message translates to:
-  /// **'Brood/Eggs'**
+  /// **'Brood'**
   String get imageTypeBrood;
 
   /// No description provided for @imageTypeHoney.
@@ -1027,7 +1027,7 @@ abstract class AppLocalizations {
   /// No description provided for @imageTypeDisease.
   ///
   /// In en, this message translates to:
-  /// **'Disease/Problem'**
+  /// **'Disease'**
   String get imageTypeDisease;
 
   /// No description provided for @imageTypeGeneral.
@@ -1731,6 +1731,318 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Member'**
   String get memberSince;
+
+  /// No description provided for @weatherSunny.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunny'**
+  String get weatherSunny;
+
+  /// No description provided for @weatherCloudy.
+  ///
+  /// In en, this message translates to:
+  /// **'Cloudy'**
+  String get weatherCloudy;
+
+  /// No description provided for @weatherWindy.
+  ///
+  /// In en, this message translates to:
+  /// **'Windy'**
+  String get weatherWindy;
+
+  /// No description provided for @weatherHot.
+  ///
+  /// In en, this message translates to:
+  /// **'Hot'**
+  String get weatherHot;
+
+  /// No description provided for @weatherCold.
+  ///
+  /// In en, this message translates to:
+  /// **'Cold'**
+  String get weatherCold;
+
+  /// No description provided for @broodExcellent.
+  ///
+  /// In en, this message translates to:
+  /// **'Excellent'**
+  String get broodExcellent;
+
+  /// No description provided for @broodGood.
+  ///
+  /// In en, this message translates to:
+  /// **'Good'**
+  String get broodGood;
+
+  /// No description provided for @broodSpotty.
+  ///
+  /// In en, this message translates to:
+  /// **'Spotty'**
+  String get broodSpotty;
+
+  /// No description provided for @broodPoor.
+  ///
+  /// In en, this message translates to:
+  /// **'Poor'**
+  String get broodPoor;
+
+  /// No description provided for @broodNone.
+  ///
+  /// In en, this message translates to:
+  /// **'None'**
+  String get broodNone;
+
+  /// No description provided for @populationStrong.
+  ///
+  /// In en, this message translates to:
+  /// **'Strong'**
+  String get populationStrong;
+
+  /// No description provided for @populationMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get populationMedium;
+
+  /// No description provided for @populationWeak.
+  ///
+  /// In en, this message translates to:
+  /// **'Weak'**
+  String get populationWeak;
+
+  /// No description provided for @populationVeryWeak.
+  ///
+  /// In en, this message translates to:
+  /// **'Very Weak'**
+  String get populationVeryWeak;
+
+  /// No description provided for @storesLow.
+  ///
+  /// In en, this message translates to:
+  /// **'Low'**
+  String get storesLow;
+
+  /// No description provided for @storesAdequate.
+  ///
+  /// In en, this message translates to:
+  /// **'Adequate'**
+  String get storesAdequate;
+
+  /// No description provided for @storesHigh.
+  ///
+  /// In en, this message translates to:
+  /// **'High'**
+  String get storesHigh;
+
+  /// No description provided for @temperamentCalm.
+  ///
+  /// In en, this message translates to:
+  /// **'Calm'**
+  String get temperamentCalm;
+
+  /// No description provided for @temperamentNervous.
+  ///
+  /// In en, this message translates to:
+  /// **'Nervous'**
+  String get temperamentNervous;
+
+  /// No description provided for @temperamentAggressive.
+  ///
+  /// In en, this message translates to:
+  /// **'Aggressive'**
+  String get temperamentAggressive;
+
+  /// No description provided for @diseaseVarroa.
+  ///
+  /// In en, this message translates to:
+  /// **'Varroa Mites'**
+  String get diseaseVarroa;
+
+  /// No description provided for @diseaseAmericanFoulbrood.
+  ///
+  /// In en, this message translates to:
+  /// **'American Foulbrood'**
+  String get diseaseAmericanFoulbrood;
+
+  /// No description provided for @diseaseEuropeanFoulbrood.
+  ///
+  /// In en, this message translates to:
+  /// **'European Foulbrood'**
+  String get diseaseEuropeanFoulbrood;
+
+  /// No description provided for @diseaseNosema.
+  ///
+  /// In en, this message translates to:
+  /// **'Nosema'**
+  String get diseaseNosema;
+
+  /// No description provided for @diseaseChalkbrood.
+  ///
+  /// In en, this message translates to:
+  /// **'Chalkbrood'**
+  String get diseaseChalkbrood;
+
+  /// No description provided for @diseaseSacbrood.
+  ///
+  /// In en, this message translates to:
+  /// **'Sacbrood'**
+  String get diseaseSacbrood;
+
+  /// No description provided for @diseaseOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get diseaseOther;
+
+  /// No description provided for @pestSmallHiveBeetle.
+  ///
+  /// In en, this message translates to:
+  /// **'Small Hive Beetle'**
+  String get pestSmallHiveBeetle;
+
+  /// No description provided for @pestWaxMoth.
+  ///
+  /// In en, this message translates to:
+  /// **'Wax Moth'**
+  String get pestWaxMoth;
+
+  /// No description provided for @pestAnts.
+  ///
+  /// In en, this message translates to:
+  /// **'Ants'**
+  String get pestAnts;
+
+  /// No description provided for @pestWasps.
+  ///
+  /// In en, this message translates to:
+  /// **'Wasps'**
+  String get pestWasps;
+
+  /// No description provided for @pestMice.
+  ///
+  /// In en, this message translates to:
+  /// **'Mice'**
+  String get pestMice;
+
+  /// No description provided for @pestOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get pestOther;
+
+  /// No description provided for @actionAddedFrames.
+  ///
+  /// In en, this message translates to:
+  /// **'Added Frames'**
+  String get actionAddedFrames;
+
+  /// No description provided for @actionRemovedFrames.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed Frames'**
+  String get actionRemovedFrames;
+
+  /// No description provided for @actionFedSugarSyrup.
+  ///
+  /// In en, this message translates to:
+  /// **'Fed Sugar Syrup'**
+  String get actionFedSugarSyrup;
+
+  /// No description provided for @actionFedPollen.
+  ///
+  /// In en, this message translates to:
+  /// **'Fed Pollen'**
+  String get actionFedPollen;
+
+  /// No description provided for @actionTreatedVarroa.
+  ///
+  /// In en, this message translates to:
+  /// **'Treated for Varroa'**
+  String get actionTreatedVarroa;
+
+  /// No description provided for @actionTreatedDisease.
+  ///
+  /// In en, this message translates to:
+  /// **'Treated for Disease'**
+  String get actionTreatedDisease;
+
+  /// No description provided for @actionRequeened.
+  ///
+  /// In en, this message translates to:
+  /// **'Requeened'**
+  String get actionRequeened;
+
+  /// No description provided for @actionSplitHive.
+  ///
+  /// In en, this message translates to:
+  /// **'Split Hive'**
+  String get actionSplitHive;
+
+  /// No description provided for @actionCombinedHives.
+  ///
+  /// In en, this message translates to:
+  /// **'Combined Hives'**
+  String get actionCombinedHives;
+
+  /// No description provided for @actionAddedSuper.
+  ///
+  /// In en, this message translates to:
+  /// **'Added Super'**
+  String get actionAddedSuper;
+
+  /// No description provided for @actionRemovedSuper.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed Super'**
+  String get actionRemovedSuper;
+
+  /// No description provided for @actionHarvestedHoney.
+  ///
+  /// In en, this message translates to:
+  /// **'Harvested Honey'**
+  String get actionHarvestedHoney;
+
+  /// No description provided for @actionMarkedQueen.
+  ///
+  /// In en, this message translates to:
+  /// **'Marked Queen'**
+  String get actionMarkedQueen;
+
+  /// No description provided for @actionClippedQueen.
+  ///
+  /// In en, this message translates to:
+  /// **'Clipped Queen'**
+  String get actionClippedQueen;
+
+  /// No description provided for @actionOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get actionOther;
+
+  /// No description provided for @imageTypeEggs.
+  ///
+  /// In en, this message translates to:
+  /// **'Eggs'**
+  String get imageTypeEggs;
+
+  /// No description provided for @imageTypeLarvae.
+  ///
+  /// In en, this message translates to:
+  /// **'Larvae'**
+  String get imageTypeLarvae;
+
+  /// No description provided for @imageTypePollen.
+  ///
+  /// In en, this message translates to:
+  /// **'Pollen'**
+  String get imageTypePollen;
+
+  /// No description provided for @imageTypePest.
+  ///
+  /// In en, this message translates to:
+  /// **'Pest'**
+  String get imageTypePest;
 }
 
 class _AppLocalizationsDelegate

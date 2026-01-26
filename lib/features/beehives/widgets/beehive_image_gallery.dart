@@ -286,7 +286,7 @@ class _ImageTile extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(14),
             child: Image.file(
-              File(image.imagePath),
+              File(image.imageUrl),
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) => Container(
                 color: Colors.grey[300],

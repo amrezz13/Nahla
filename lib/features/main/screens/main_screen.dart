@@ -66,7 +66,7 @@ class _MainScreenState extends State<MainScreen> {
               label: l10n.home,
             ),
             BottomNavigationBarItem(
-              icon: const Icon(Icons.hive_outlined),
+              icon: const Icon(Icons.hive_sharp),
               activeIcon: const Icon(Icons.hive),
               label: l10n.apiaries,
             ),

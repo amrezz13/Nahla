@@ -476,7 +476,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get imageTypeFrames => 'Cadres';
 
   @override
-  String get imageTypeDisease => 'Maladie/Problème';
+  String get imageTypeDisease => 'Maladie';
 
   @override
   String get imageTypeGeneral => 'Général';
@@ -838,4 +838,160 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get memberSince => 'Membre';
+
+  @override
+  String get weatherSunny => 'Ensoleillé';
+
+  @override
+  String get weatherCloudy => 'Nuageux';
+
+  @override
+  String get weatherWindy => 'Venteux';
+
+  @override
+  String get weatherHot => 'Chaud';
+
+  @override
+  String get weatherCold => 'Froid';
+
+  @override
+  String get broodExcellent => 'Excellent';
+
+  @override
+  String get broodGood => 'Bon';
+
+  @override
+  String get broodSpotty => 'Irrégulier';
+
+  @override
+  String get broodPoor => 'Faible';
+
+  @override
+  String get broodNone => 'Aucun';
+
+  @override
+  String get populationStrong => 'Forte';
+
+  @override
+  String get populationMedium => 'Moyenne';
+
+  @override
+  String get populationWeak => 'Faible';
+
+  @override
+  String get populationVeryWeak => 'Très faible';
+
+  @override
+  String get storesLow => 'Bas';
+
+  @override
+  String get storesAdequate => 'Adéquat';
+
+  @override
+  String get storesHigh => 'Élevé';
+
+  @override
+  String get temperamentCalm => 'Calme';
+
+  @override
+  String get temperamentNervous => 'Nerveux';
+
+  @override
+  String get temperamentAggressive => 'Agressif';
+
+  @override
+  String get diseaseVarroa => 'Varroa';
+
+  @override
+  String get diseaseAmericanFoulbrood => 'Loque américaine';
+
+  @override
+  String get diseaseEuropeanFoulbrood => 'Loque européenne';
+
+  @override
+  String get diseaseNosema => 'Nosémose';
+
+  @override
+  String get diseaseChalkbrood => 'Couvain plâtré';
+
+  @override
+  String get diseaseSacbrood => 'Couvain sacciforme';
+
+  @override
+  String get diseaseOther => 'Autre';
+
+  @override
+  String get pestSmallHiveBeetle => 'Petit coléoptère des ruches';
+
+  @override
+  String get pestWaxMoth => 'Fausse teigne';
+
+  @override
+  String get pestAnts => 'Fourmis';
+
+  @override
+  String get pestWasps => 'Guêpes';
+
+  @override
+  String get pestMice => 'Souris';
+
+  @override
+  String get pestOther => 'Autre';
+
+  @override
+  String get actionAddedFrames => 'Ajout de cadres';
+
+  @override
+  String get actionRemovedFrames => 'Retrait de cadres';
+
+  @override
+  String get actionFedSugarSyrup => 'Nourrissement au sirop';
+
+  @override
+  String get actionFedPollen => 'Nourrissement au pollen';
+
+  @override
+  String get actionTreatedVarroa => 'Traitement varroa';
+
+  @override
+  String get actionTreatedDisease => 'Traitement maladie';
+
+  @override
+  String get actionRequeened => 'Remérage';
+
+  @override
+  String get actionSplitHive => 'Division de ruche';
+
+  @override
+  String get actionCombinedHives => 'Réunion de ruches';
+
+  @override
+  String get actionAddedSuper => 'Ajout de hausse';
+
+  @override
+  String get actionRemovedSuper => 'Retrait de hausse';
+
+  @override
+  String get actionHarvestedHoney => 'Récolte de miel';
+
+  @override
+  String get actionMarkedQueen => 'Marquage de reine';
+
+  @override
+  String get actionClippedQueen => 'Clippage de reine';
+
+  @override
+  String get actionOther => 'Autre';
+
+  @override
+  String get imageTypeEggs => 'Œufs';
+
+  @override
+  String get imageTypeLarvae => 'Larves';
+
+  @override
+  String get imageTypePollen => 'Pollen';
+
+  @override
+  String get imageTypePest => 'Parasite';
 }

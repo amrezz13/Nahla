@@ -230,7 +230,7 @@ class _InspectionDetailScreenState extends State<InspectionDetailScreen> {
                 _HeaderInfoItem(
                   icon: null,
                   emoji: inspection.weather!.emoji,
-                  label: inspection.weather!.label,
+                  label: inspection.weather!.getLabel(l10n),
                 ),
               ],
             ],
@@ -320,7 +320,7 @@ class _InspectionDetailScreenState extends State<InspectionDetailScreen> {
           _InfoRow(
             emoji: '🔲',
             label: l10n.broodPattern,
-            value: '${inspection.broodPattern!.emoji} ${inspection.broodPattern!.label}',
+            value: '${inspection.broodPattern!.emoji} ${inspection.broodPattern!.getLabel(l10n)}',
           ),
         ],
       ],
@@ -340,7 +340,7 @@ class _InspectionDetailScreenState extends State<InspectionDetailScreen> {
           _InfoRow(
             emoji: inspection.populationStrength!.emoji,
             label: l10n.populationStrength,
-            value: inspection.populationStrength!.label,
+            value: inspection.populationStrength!.getLabel(l10n),
           ),
         if (inspection.framesOfBees != null) ...[
           const SizedBox(height: 12),
@@ -376,7 +376,7 @@ class _InspectionDetailScreenState extends State<InspectionDetailScreen> {
           _InfoRow(
             emoji: '🍯',
             label: l10n.honeyStores,
-            value: '${inspection.honeyStores!.emoji} ${inspection.honeyStores!.label}',
+            value: '${inspection.honeyStores!.emoji} ${inspection.honeyStores!.getLabel(l10n)}',
             valueColor: inspection.honeyStores == StoresLevel.low ? Colors.red : null,
           ),
         if (inspection.pollenStores != null) ...[
@@ -384,7 +384,7 @@ class _InspectionDetailScreenState extends State<InspectionDetailScreen> {
           _InfoRow(
             emoji: '🌼',
             label: l10n.pollenStores,
-            value: '${inspection.pollenStores!.emoji} ${inspection.pollenStores!.label}',
+            value: '${inspection.pollenStores!.emoji} ${inspection.pollenStores!.getLabel(l10n)}',
             valueColor: inspection.pollenStores == StoresLevel.low ? Colors.red : null,
           ),
         ],
@@ -430,7 +430,7 @@ class _InspectionDetailScreenState extends State<InspectionDetailScreen> {
           _InfoRow(
             emoji: inspection.temperament!.emoji,
             label: l10n.temperament,
-            value: inspection.temperament!.label,
+            value: inspection.temperament!.getLabel(l10n),
           ),
         if (inspection.diseasesObserved.isNotEmpty) ...[
           const Divider(height: 24),
@@ -454,7 +454,7 @@ class _InspectionDetailScreenState extends State<InspectionDetailScreen> {
                   border: Border.all(color: Colors.red.withOpacity(0.3)),
                 ),
                 child: Text(
-                  disease.label,
+                  disease.getLabel(l10n),
                   style: TextStyle(
                     fontSize: 12,
                     color: Colors.red[700],
@@ -492,7 +492,7 @@ class _InspectionDetailScreenState extends State<InspectionDetailScreen> {
                     Text(pest.emoji, style: const TextStyle(fontSize: 14)),
                     const SizedBox(width: 4),
                     Text(
-                      pest.label,
+                      pest.getLabel(l10n),
                       style: TextStyle(
                         fontSize: 12,
                         color: Colors.orange[700],
@@ -536,7 +536,7 @@ class _InspectionDetailScreenState extends State<InspectionDetailScreen> {
                   Text(action.emoji, style: const TextStyle(fontSize: 14)),
                   const SizedBox(width: 4),
                   Text(
-                    action.label,
+                    action.getLabel(l10n),
                     style: TextStyle(
                       fontSize: 12,
                       color: Colors.blue[700],
@@ -591,7 +591,7 @@ class _InspectionDetailScreenState extends State<InspectionDetailScreen> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: Image.file(
-                      File(image.imagePath),
+                      File(image.imageUrl),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -879,6 +879,7 @@ class _FullScreenImageViewerState extends State<_FullScreenImageViewer> {
   @override
   Widget build(BuildContext context) {
     final currentImage = widget.images[_currentIndex];
+  final l10n = AppLocalizations.of(context)!;  
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -890,7 +891,7 @@ class _FullScreenImageViewerState extends State<_FullScreenImageViewer> {
           children: [
             Text(currentImage.type.emoji),
             const SizedBox(width: 8),
-            Text(currentImage.type.label),
+            Text(currentImage.type.getLabel(l10n)),
           ],
         ),
         actions: [
@@ -917,7 +918,7 @@ class _FullScreenImageViewerState extends State<_FullScreenImageViewer> {
             maxScale: 4.0,
             child: Center(
               child: Image.file(
-                File(widget.images[index].imagePath),
+                File(widget.images[index].imageUrl),
                 fit: BoxFit.contain,
               ),
             ),

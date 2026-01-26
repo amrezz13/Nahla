@@ -1,3 +1,6 @@
+// lib/features/beehives/models/beehive_model.dart
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'beehive_image_model.dart';
 
 enum QueenType { local, imported, bred, swarm, purchased, unknown }
@@ -67,6 +70,16 @@ extension HealthStatusExtension on HealthStatus {
     }
   }
 
+  String get labelAr {
+    switch (this) {
+      case HealthStatus.healthy: return 'سليمة';
+      case HealthStatus.weak: return 'ضعيفة';
+      case HealthStatus.sick: return 'مريضة';
+      case HealthStatus.critical: return 'حرجة';
+      case HealthStatus.unknown: return 'غير معروف';
+    }
+  }
+
   String get emoji {
     switch (this) {
       case HealthStatus.healthy: return '💚';
@@ -105,6 +118,7 @@ extension QueenMarkingColorExtension on QueenMarkingColor {
 class Beehive {
   final String id;
   final String apiaryId;
+  final String userId;
   
   // Identification
   final int systemNumber;
@@ -125,7 +139,7 @@ class Beehive {
   // Status
   final HealthStatus healthStatus;
   
-  // Images
+  // Images (stored as subcollection or separate)
   final List<BeehiveImage> images;
   
   // Notes
@@ -138,6 +152,7 @@ class Beehive {
   Beehive({
     required this.id,
     required this.apiaryId,
+    required this.userId,
     required this.systemNumber,
     required this.hiveNumber,
     this.name,
@@ -155,48 +170,127 @@ class Beehive {
     required this.updatedAt,
   });
 
+  // Convert to Firestore map
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
       'apiaryId': apiaryId,
+      'userId': userId,
       'systemNumber': systemNumber,
       'hiveNumber': hiveNumber,
       'name': name,
       'frameCount': frameCount,
-      'hasQueen': hasQueen ? 1 : 0,
+      'hasQueen': hasQueen,
       'queenType': queenType?.index,
       'queenBreed': queenBreed?.index,
-      'queenAddedDate': queenAddedDate?.toIso8601String(),
-      'isQueenMarked': isQueenMarked ? 1 : 0,
+      'queenAddedDate': queenAddedDate != null 
+          ? Timestamp.fromDate(queenAddedDate!) 
+          : null,
+      'isQueenMarked': isQueenMarked,
       'queenMarkingColor': queenMarkingColor?.index,
       'healthStatus': healthStatus.index,
       'notes': notes,
-      'createdAt': createdAt.toIso8601String(),
-      'updatedAt': updatedAt.toIso8601String(),
+      'createdAt': Timestamp.fromDate(createdAt),
+      'updatedAt': Timestamp.fromDate(updatedAt),
     };
   }
 
-  factory Beehive.fromMap(Map<String, dynamic> map, {List<BeehiveImage>? images}) {
+  // Create from Firestore document
+  factory Beehive.fromDocument(DocumentSnapshot doc, {List<BeehiveImage>? images}) {
+    final data = doc.data() as Map<String, dynamic>;
     return Beehive(
-      id: map['id'],
-      apiaryId: map['apiaryId'],
-      systemNumber: map['systemNumber'],
-      hiveNumber: map['hiveNumber'],
-      name: map['name'],
-      frameCount: map['frameCount'],
-      hasQueen: map['hasQueen'] == 1,
-      queenType: map['queenType'] != null ? QueenType.values[map['queenType']] : null,
-      queenBreed: map['queenBreed'] != null ? QueenBreed.values[map['queenBreed']] : null,
-      queenAddedDate: map['queenAddedDate'] != null ? DateTime.parse(map['queenAddedDate']) : null,
-      isQueenMarked: map['isQueenMarked'] == 1,
-      queenMarkingColor: map['queenMarkingColor'] != null 
-          ? QueenMarkingColor.values[map['queenMarkingColor']] 
+      id: doc.id,
+      apiaryId: data['apiaryId'] ?? '',
+      userId: data['userId'] ?? '',
+      systemNumber: data['systemNumber'] ?? 0,
+      hiveNumber: data['hiveNumber'] ?? '',
+      name: data['name'],
+      frameCount: data['frameCount'] ?? 10,
+      hasQueen: data['hasQueen'] ?? false,
+      queenType: data['queenType'] != null 
+          ? QueenType.values[data['queenType']] 
           : null,
-      healthStatus: HealthStatus.values[map['healthStatus']],
+      queenBreed: data['queenBreed'] != null 
+          ? QueenBreed.values[data['queenBreed']] 
+          : null,
+      queenAddedDate: data['queenAddedDate'] != null 
+          ? (data['queenAddedDate'] as Timestamp).toDate() 
+          : null,
+      isQueenMarked: data['isQueenMarked'] ?? false,
+      queenMarkingColor: data['queenMarkingColor'] != null 
+          ? QueenMarkingColor.values[data['queenMarkingColor']] 
+          : null,
+      healthStatus: data['healthStatus'] != null 
+          ? HealthStatus.values[data['healthStatus']] 
+          : HealthStatus.unknown,
       images: images ?? [],
-      notes: map['notes'],
-      createdAt: DateTime.parse(map['createdAt']),
-      updatedAt: DateTime.parse(map['updatedAt']),
+      notes: data['notes'],
+      createdAt: (data['createdAt'] as Timestamp).toDate(),
+      updatedAt: (data['updatedAt'] as Timestamp).toDate(),
     );
   }
+
+  // Copy with new values
+  Beehive copyWith({
+    String? id,
+    String? apiaryId,
+    String? userId,
+    int? systemNumber,
+    String? hiveNumber,
+    String? name,
+    int? frameCount,
+    bool? hasQueen,
+    QueenType? queenType,
+    QueenBreed? queenBreed,
+    DateTime? queenAddedDate,
+    bool? isQueenMarked,
+    QueenMarkingColor? queenMarkingColor,
+    HealthStatus? healthStatus,
+    List<BeehiveImage>? images,
+    String? notes,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+  }) {
+    return Beehive(
+      id: id ?? this.id,
+      apiaryId: apiaryId ?? this.apiaryId,
+      userId: userId ?? this.userId,
+      systemNumber: systemNumber ?? this.systemNumber,
+      hiveNumber: hiveNumber ?? this.hiveNumber,
+      name: name ?? this.name,
+      frameCount: frameCount ?? this.frameCount,
+      hasQueen: hasQueen ?? this.hasQueen,
+      queenType: queenType ?? this.queenType,
+      queenBreed: queenBreed ?? this.queenBreed,
+      queenAddedDate: queenAddedDate ?? this.queenAddedDate,
+      isQueenMarked: isQueenMarked ?? this.isQueenMarked,
+      queenMarkingColor: queenMarkingColor ?? this.queenMarkingColor,
+      healthStatus: healthStatus ?? this.healthStatus,
+      images: images ?? this.images,
+      notes: notes ?? this.notes,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+    );
+  }
+
+  // Helper getters
+  String get displayName => name ?? 'Hive #$hiveNumber';
+  
+  String get queenStatusText {
+    if (!hasQueen) return 'No Queen';
+    return queenType?.label ?? 'Has Queen';
+  }
+
+  @override
+  String toString() {
+    return 'Beehive(id: $id, hiveNumber: $hiveNumber, apiaryId: $apiaryId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is Beehive && other.id == id;
+  }
+
+  @override
+  int get hashCode => id.hashCode;
 }

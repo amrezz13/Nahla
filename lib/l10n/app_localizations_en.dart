@@ -51,7 +51,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get weatherMainlyClear => 'Mainly clear';
 
   @override
-  String get weatherPartlyCloudy => 'Partly cloudy';
+  String get weatherPartlyCloudy => 'Partly Cloudy';
 
   @override
   String get weatherOvercast => 'Overcast';
@@ -466,7 +466,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get imageTypeQueen => 'Queen';
 
   @override
-  String get imageTypeBrood => 'Brood/Eggs';
+  String get imageTypeBrood => 'Brood';
 
   @override
   String get imageTypeHoney => 'Honey';
@@ -475,7 +475,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get imageTypeFrames => 'Frames';
 
   @override
-  String get imageTypeDisease => 'Disease/Problem';
+  String get imageTypeDisease => 'Disease';
 
   @override
   String get imageTypeGeneral => 'General';
@@ -833,4 +833,160 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get memberSince => 'Member';
+
+  @override
+  String get weatherSunny => 'Sunny';
+
+  @override
+  String get weatherCloudy => 'Cloudy';
+
+  @override
+  String get weatherWindy => 'Windy';
+
+  @override
+  String get weatherHot => 'Hot';
+
+  @override
+  String get weatherCold => 'Cold';
+
+  @override
+  String get broodExcellent => 'Excellent';
+
+  @override
+  String get broodGood => 'Good';
+
+  @override
+  String get broodSpotty => 'Spotty';
+
+  @override
+  String get broodPoor => 'Poor';
+
+  @override
+  String get broodNone => 'None';
+
+  @override
+  String get populationStrong => 'Strong';
+
+  @override
+  String get populationMedium => 'Medium';
+
+  @override
+  String get populationWeak => 'Weak';
+
+  @override
+  String get populationVeryWeak => 'Very Weak';
+
+  @override
+  String get storesLow => 'Low';
+
+  @override
+  String get storesAdequate => 'Adequate';
+
+  @override
+  String get storesHigh => 'High';
+
+  @override
+  String get temperamentCalm => 'Calm';
+
+  @override
+  String get temperamentNervous => 'Nervous';
+
+  @override
+  String get temperamentAggressive => 'Aggressive';
+
+  @override
+  String get diseaseVarroa => 'Varroa Mites';
+
+  @override
+  String get diseaseAmericanFoulbrood => 'American Foulbrood';
+
+  @override
+  String get diseaseEuropeanFoulbrood => 'European Foulbrood';
+
+  @override
+  String get diseaseNosema => 'Nosema';
+
+  @override
+  String get diseaseChalkbrood => 'Chalkbrood';
+
+  @override
+  String get diseaseSacbrood => 'Sacbrood';
+
+  @override
+  String get diseaseOther => 'Other';
+
+  @override
+  String get pestSmallHiveBeetle => 'Small Hive Beetle';
+
+  @override
+  String get pestWaxMoth => 'Wax Moth';
+
+  @override
+  String get pestAnts => 'Ants';
+
+  @override
+  String get pestWasps => 'Wasps';
+
+  @override
+  String get pestMice => 'Mice';
+
+  @override
+  String get pestOther => 'Other';
+
+  @override
+  String get actionAddedFrames => 'Added Frames';
+
+  @override
+  String get actionRemovedFrames => 'Removed Frames';
+
+  @override
+  String get actionFedSugarSyrup => 'Fed Sugar Syrup';
+
+  @override
+  String get actionFedPollen => 'Fed Pollen';
+
+  @override
+  String get actionTreatedVarroa => 'Treated for Varroa';
+
+  @override
+  String get actionTreatedDisease => 'Treated for Disease';
+
+  @override
+  String get actionRequeened => 'Requeened';
+
+  @override
+  String get actionSplitHive => 'Split Hive';
+
+  @override
+  String get actionCombinedHives => 'Combined Hives';
+
+  @override
+  String get actionAddedSuper => 'Added Super';
+
+  @override
+  String get actionRemovedSuper => 'Removed Super';
+
+  @override
+  String get actionHarvestedHoney => 'Harvested Honey';
+
+  @override
+  String get actionMarkedQueen => 'Marked Queen';
+
+  @override
+  String get actionClippedQueen => 'Clipped Queen';
+
+  @override
+  String get actionOther => 'Other';
+
+  @override
+  String get imageTypeEggs => 'Eggs';
+
+  @override
+  String get imageTypeLarvae => 'Larvae';
+
+  @override
+  String get imageTypePollen => 'Pollen';
+
+  @override
+  String get imageTypePest => 'Pest';
 }

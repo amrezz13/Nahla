@@ -182,17 +182,22 @@ Widget _buildWeatherCard(BuildContext context, AppLocalizations l10n, Color prim
   Widget _buildQuickStats(BuildContext context, AppLocalizations l10n, bool isDark) {
     return Row(
       children: [
-        _buildStatCard('🏠', '5', l10n.apiaries, isDark),
+        _buildStatCard( AppRoutes.apiaries, context,'🏠', '5', l10n.apiaries, isDark),
         const SizedBox(width: 12),
-        _buildStatCard('🐝', '32', l10n.beehives, isDark),
+        _buildStatCard(null , context,'🐝', '32', l10n.beehives, isDark),
         const SizedBox(width: 12),
-        _buildStatCard('📋', '12', l10n.inspections, isDark),
+        _buildStatCard(null , context,'📋', '12', l10n.inspections, isDark),
       ],
     );
   }
 
-  Widget _buildStatCard(String emoji, String value, String label, bool isDark) {
-    return Expanded(
+Widget _buildStatCard(screen, BuildContext context,String emoji, String value, String label, bool isDark) {
+  return Expanded(
+    child: GestureDetector(
+
+          onTap: () {
+      Navigator.pushNamed(context, screen);
+    },
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
@@ -227,9 +232,9 @@ Widget _buildWeatherCard(BuildContext context, AppLocalizations l10n, Color prim
           ],
         ),
       ),
-    );
-  }
-
+    ),
+  );
+}
   Widget _buildQuickActions(BuildContext context, AppLocalizations l10n, bool isDark, Color primaryColor) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

@@ -124,7 +124,7 @@ class _ApiariesScreenState extends State<ApiariesScreen> {
                 height: 150,
                 width: double.infinity,
                 child: Image.file(
-                  File(apiary.imagePath!),
+                  File(apiary.imageUrl!),
                   fit: BoxFit.cover,
                 ),
               )

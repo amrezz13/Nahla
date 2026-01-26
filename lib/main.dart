@@ -2,11 +2,23 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 import 'l10n/app_localizations.dart';
 import 'core/theme/app_theme.dart';
 import 'routes/app_routes.dart';
+import 'services/auth_service.dart';
+import 'services/apiary_service.dart';
+import 'services/hive_service.dart';
+import 'services/inspection_service.dart';
+import 'features/auth/providers/auth_provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -15,33 +27,41 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'BeeKeeper',
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme,
-
-      // Localization
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthProvider()..init()),
+        ChangeNotifierProvider(create: (_) => ApiaryService()),
+        ChangeNotifierProvider(create: (_) => HiveService()),
+        ChangeNotifierProvider(create: (_) => InspectionService()),
       ],
-      supportedLocales: const [
-        Locale('en'),
-        Locale('ar'),
-        Locale('fr'),
-      ],
+      child: MaterialApp(
+        title: 'BeeKeeper',
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.lightTheme,
 
-      home: const DevMenu(),
-      onGenerateRoute: (settings) {
-        final routes = AppRoutes.routes;
-        final builder = routes[settings.name];
-        if (builder != null) {
-          return MaterialPageRoute(builder: builder);
-        }
-        return null;
-      },
+        // Localization
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('en'),
+          Locale('ar'),
+          Locale('fr'),
+        ],
+
+        home: const DevMenu(), // Change to AuthWrapper() for production
+        onGenerateRoute: (settings) {
+          final routes = AppRoutes.routes;
+          final builder = routes[settings.name];
+          if (builder != null) {
+            return MaterialPageRoute(builder: builder);
+          }
+          return null;
+        },
+      ),
     );
   }
 }
