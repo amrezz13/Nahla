@@ -264,7 +264,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get hives => 'خلايا';
 
   @override
-  String get beehives => 'خلايا النحل';
+  String get beehives => 'الخلايا';
 
   @override
   String get noHives => 'لا توجد خلايا بعد';
@@ -660,4 +660,174 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get feed => 'تغذية';
+
+  @override
+  String get signUp => 'إنشاء حساب';
+
+  @override
+  String get logout => 'تسجيل الخروج';
+
+  @override
+  String get welcomeBack => 'مرحباً بعودتك';
+
+  @override
+  String get loginToContinue => 'سجل دخولك لمتابعة إدارة مناحلك';
+
+  @override
+  String get createAccount => 'إنشاء حساب';
+
+  @override
+  String get signUpToGetStarted => 'سجل للبدء في إدارة نحلك';
+
+  @override
+  String get confirmPassword => 'تأكيد كلمة المرور';
+
+  @override
+  String get fullName => 'الاسم الكامل';
+
+  @override
+  String get fullNameHint => 'أدخل اسمك الكامل';
+
+  @override
+  String get phoneNumber => 'رقم الهاتف';
+
+  @override
+  String get pleaseEnterEmail => 'الرجاء إدخال البريد الإلكتروني';
+
+  @override
+  String get pleaseEnterValidEmail => 'الرجاء إدخال بريد إلكتروني صحيح';
+
+  @override
+  String get pleaseEnterPassword => 'الرجاء إدخال كلمة المرور';
+
+  @override
+  String get pleaseConfirmPassword => 'الرجاء تأكيد كلمة المرور';
+
+  @override
+  String get pleaseEnterName => 'الرجاء إدخال اسمك';
+
+  @override
+  String get pleaseEnterFullName => 'الرجاء إدخال اسمك الكامل';
+
+  @override
+  String get pleaseEnterPhone => 'الرجاء إدخال رقم الهاتف';
+
+  @override
+  String get passwordTooShort => 'كلمة المرور يجب أن تكون 6 أحرف على الأقل';
+
+  @override
+  String get passwordsDoNotMatch => 'كلمات المرور غير متطابقة';
+
+  @override
+  String get rememberMe => 'تذكرني';
+
+  @override
+  String get forgotPassword => 'نسيت كلمة المرور؟';
+
+  @override
+  String get forgotPasswordDescription =>
+      'أدخل بريدك الإلكتروني وسنرسل لك رابط لإعادة تعيين كلمة المرور.';
+
+  @override
+  String get sendResetLink => 'إرسال رابط الاستعادة';
+
+  @override
+  String get backToLogin => 'العودة لتسجيل الدخول';
+
+  @override
+  String get emailSent => 'تم إرسال البريد!';
+
+  @override
+  String get checkYourEmail =>
+      'لقد أرسلنا رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني. يرجى التحقق من صندوق الوارد.';
+
+  @override
+  String get didntReceiveEmail => 'لم تستلم البريد؟ إعادة الإرسال';
+
+  @override
+  String get orContinueWith => 'أو المتابعة عبر';
+
+  @override
+  String get continueWithGoogle => 'المتابعة مع جوجل';
+
+  @override
+  String get dontHaveAccount => 'ليس لديك حساب؟';
+
+  @override
+  String get alreadyHaveAccount => 'لديك حساب بالفعل؟';
+
+  @override
+  String get iAgreeToThe => 'أوافق على';
+
+  @override
+  String get termsOfService => 'شروط الخدمة';
+
+  @override
+  String get and => 'و';
+
+  @override
+  String get privacyPolicy => 'سياسة الخصوصية';
+
+  @override
+  String get pleaseAcceptTerms => 'الرجاء الموافقة على الشروط والأحكام';
+
+  @override
+  String get logoutConfirm => 'هل أنت متأكد أنك تريد تسجيل الخروج؟';
+
+  @override
+  String get home => 'الرئيسية';
+
+  @override
+  String get marketplace => 'السوق';
+
+  @override
+  String get profile => 'الملف الشخصي';
+
+  @override
+  String get goodMorning => 'صباح الخير';
+
+  @override
+  String get goodAfternoon => 'مساء الخير';
+
+  @override
+  String get goodEvening => 'مساء الخير';
+
+  @override
+  String get todayWeather => 'طقس اليوم';
+
+  @override
+  String get goodForInspection => 'مناسب للفحص';
+
+  @override
+  String get notGoodForInspection => 'غير مناسب للفحص';
+
+  @override
+  String get quickActions => 'إجراءات سريعة';
+
+  @override
+  String get newInspection => 'فحص';
+
+  @override
+  String get recentActivity => 'النشاط الأخير';
+
+  @override
+  String get comingSoon => 'قريباً';
+
+  @override
+  String get marketplaceComingSoon => 'بيع وشراء العسل والملكات والمعدات';
+
+  @override
+  String get editProfile => 'تعديل الملف';
+
+  @override
+  String get notifications => 'الإشعارات';
+
+  @override
+  String get language => 'اللغة';
+
+  @override
+  String get helpSupport => 'المساعدة والدعم';
+
+  @override
+  String get memberSince => 'عضو منذ';
 }

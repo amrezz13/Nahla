@@ -244,5 +244,85 @@
   "queen": "Queen",
   "eggs": "Eggs",
   "larvae": "Larvae",
-  "feed": "Feed"
+  "feed": "Feed", 
+  
+  "login": "Login",
+  "signUp": "Sign Up",
+  "logout": "Logout",
+  
+  "welcomeBack": "Welcome Back",
+  "loginToContinue": "Login to continue managing your apiaries",
+  "createAccount": "Create Account",
+  "signUpToGetStarted": "Sign up to start managing your bees",
+  
+  "email": "Email",
+  "password": "Password",
+  "confirmPassword": "Confirm Password",
+  "fullName": "Full Name",
+  "fullNameHint": "Enter your full name",
+  "phoneNumber": "Phone Number",
+  
+  "pleaseEnterEmail": "Please enter your email",
+  "pleaseEnterValidEmail": "Please enter a valid email",
+  "pleaseEnterPassword": "Please enter your password",
+  "pleaseConfirmPassword": "Please confirm your password",
+  "pleaseEnterName": "Please enter your name",
+  "pleaseEnterFullName": "Please enter your full name",
+  "pleaseEnterPhone": "Please enter your phone number",
+  "passwordTooShort": "Password must be at least 6 characters",
+  "passwordsDoNotMatch": "Passwords do not match",
+  
+  "rememberMe": "Remember me",
+  "forgotPassword": "Forgot Password?",
+  "forgotPasswordDescription": "Enter your email address and we'll send you a link to reset your password.",
+  "sendResetLink": "Send Reset Link",
+  "backToLogin": "Back to Login",
+  
+  "emailSent": "Email Sent!",
+  "checkYourEmail": "We've sent a password reset link to your email. Please check your inbox.",
+  "didntReceiveEmail": "Didn't receive the email? Resend",
+  
+  "orContinueWith": "or continue with",
+  "continueWithGoogle": "Continue with Google",
+  
+  "dontHaveAccount": "Don't have an account?",
+  "alreadyHaveAccount": "Already have an account?",
+  
+  "iAgreeToThe": "I agree to the",
+  "termsOfService": "Terms of Service",
+  "and": "and",
+  "privacyPolicy": "Privacy Policy",
+  "pleaseAcceptTerms": "Please accept the terms and conditions",
+  
+  "logoutConfirm": "Are you sure you want to logout?",
+  "cancel": "Cancel", 
+   "home": "Home",
+  "apiaries": "Apiaries",
+  "marketplace": "Marketplace",
+  "profile": "Profile",
+
+  "goodMorning": "Good Morning",
+  "goodAfternoon": "Good Afternoon",
+  "goodEvening": "Good Evening",
+
+  "todayWeather": "Today's Weather",
+  "goodForInspection": "Good for inspection",
+  "notGoodForInspection": "Not ideal for inspection",
+  "beehives": "Beehives",
+  "inspections": "Inspections",
+  "quickActions": "Quick Actions",
+  "addApiary": "Add Apiary",
+  "addHive": "Add Hive",
+  "newInspection": "Inspect",
+  "recentActivity": "Recent Activity",
+
+  "comingSoon": "Coming Soon",
+  "marketplaceComingSoon": "Buy and sell honey, queens, and equipment",
+
+  "editProfile": "Edit Profile",
+  "notifications": "Notifications",
+  "language": "Language",
+  "helpSupport": "Help & Support",
+  "memberSince": "Member"
+
 }

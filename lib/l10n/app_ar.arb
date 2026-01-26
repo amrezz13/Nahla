@@ -244,6 +244,88 @@
   "queen": "الملكة",
   "eggs": "البيض",
   "larvae": "اليرقات",
-  "feed": "تغذية"
+  "feed": "تغذية", 
+  
+  "login": "تسجيل الدخول",
+  "signUp": "إنشاء حساب",
+  "logout": "تسجيل الخروج",
+  
+  "welcomeBack": "مرحباً بعودتك",
+  "loginToContinue": "سجل دخولك لمتابعة إدارة مناحلك",
+  "createAccount": "إنشاء حساب",
+  "signUpToGetStarted": "سجل للبدء في إدارة نحلك",
+  
+  "email": "البريد الإلكتروني",
+  "password": "كلمة المرور",
+  "confirmPassword": "تأكيد كلمة المرور",
+  "fullName": "الاسم الكامل",
+  "fullNameHint": "أدخل اسمك الكامل",
+  "phoneNumber": "رقم الهاتف",
+  
+  "pleaseEnterEmail": "الرجاء إدخال البريد الإلكتروني",
+  "pleaseEnterValidEmail": "الرجاء إدخال بريد إلكتروني صحيح",
+  "pleaseEnterPassword": "الرجاء إدخال كلمة المرور",
+  "pleaseConfirmPassword": "الرجاء تأكيد كلمة المرور",
+  "pleaseEnterName": "الرجاء إدخال اسمك",
+  "pleaseEnterFullName": "الرجاء إدخال اسمك الكامل",
+  "pleaseEnterPhone": "الرجاء إدخال رقم الهاتف",
+  "passwordTooShort": "كلمة المرور يجب أن تكون 6 أحرف على الأقل",
+  "passwordsDoNotMatch": "كلمات المرور غير متطابقة",
+  
+  "rememberMe": "تذكرني",
+  "forgotPassword": "نسيت كلمة المرور؟",
+  "forgotPasswordDescription": "أدخل بريدك الإلكتروني وسنرسل لك رابط لإعادة تعيين كلمة المرور.",
+  "sendResetLink": "إرسال رابط الاستعادة",
+  "backToLogin": "العودة لتسجيل الدخول",
+  
+  "emailSent": "تم إرسال البريد!",
+  "checkYourEmail": "لقد أرسلنا رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني. يرجى التحقق من صندوق الوارد.",
+  "didntReceiveEmail": "لم تستلم البريد؟ إعادة الإرسال",
+  
+  "orContinueWith": "أو المتابعة عبر",
+  "continueWithGoogle": "المتابعة مع جوجل",
+  
+  "dontHaveAccount": "ليس لديك حساب؟",
+  "alreadyHaveAccount": "لديك حساب بالفعل؟",
+  
+  "iAgreeToThe": "أوافق على",
+  "termsOfService": "شروط الخدمة",
+  "and": "و",
+  "privacyPolicy": "سياسة الخصوصية",
+  "pleaseAcceptTerms": "الرجاء الموافقة على الشروط والأحكام",
+  
+  "logoutConfirm": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
+  "cancel": "إلغاء", 
+
+  "home": "الرئيسية",
+  "apiaries": "المناحل",
+  "marketplace": "السوق",
+  "profile": "الملف الشخصي",
+
+  "_GREETINGS": "=== التحيات ===",
+  "goodMorning": "صباح الخير",
+  "goodAfternoon": "مساء الخير",
+  "goodEvening": "مساء الخير",
+
+  "todayWeather": "طقس اليوم",
+  "goodForInspection": "مناسب للفحص",
+  "notGoodForInspection": "غير مناسب للفحص",
+  "beehives": "الخلايا",
+  "inspections": "الفحوصات",
+  "quickActions": "إجراءات سريعة",
+  "addApiary": "إضافة منحل",
+  "addHive": "إضافة خلية",
+  "newInspection": "فحص",
+  "recentActivity": "النشاط الأخير",
+
+  "comingSoon": "قريباً",
+  "marketplaceComingSoon": "بيع وشراء العسل والملكات والمعدات",
+
+  "editProfile": "تعديل الملف",
+  "notifications": "الإشعارات",
+  "language": "اللغة",
+  "helpSupport": "المساعدة والدعم",
+  "memberSince": "عضو منذ"
+
 
 }

@@ -662,4 +662,175 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get feed => 'Feed';
+
+  @override
+  String get signUp => 'Sign Up';
+
+  @override
+  String get logout => 'Logout';
+
+  @override
+  String get welcomeBack => 'Welcome Back';
+
+  @override
+  String get loginToContinue => 'Login to continue managing your apiaries';
+
+  @override
+  String get createAccount => 'Create Account';
+
+  @override
+  String get signUpToGetStarted => 'Sign up to start managing your bees';
+
+  @override
+  String get confirmPassword => 'Confirm Password';
+
+  @override
+  String get fullName => 'Full Name';
+
+  @override
+  String get fullNameHint => 'Enter your full name';
+
+  @override
+  String get phoneNumber => 'Phone Number';
+
+  @override
+  String get pleaseEnterEmail => 'Please enter your email';
+
+  @override
+  String get pleaseEnterValidEmail => 'Please enter a valid email';
+
+  @override
+  String get pleaseEnterPassword => 'Please enter your password';
+
+  @override
+  String get pleaseConfirmPassword => 'Please confirm your password';
+
+  @override
+  String get pleaseEnterName => 'Please enter your name';
+
+  @override
+  String get pleaseEnterFullName => 'Please enter your full name';
+
+  @override
+  String get pleaseEnterPhone => 'Please enter your phone number';
+
+  @override
+  String get passwordTooShort => 'Password must be at least 6 characters';
+
+  @override
+  String get passwordsDoNotMatch => 'Passwords do not match';
+
+  @override
+  String get rememberMe => 'Remember me';
+
+  @override
+  String get forgotPassword => 'Forgot Password?';
+
+  @override
+  String get forgotPasswordDescription =>
+      'Enter your email address and we\'ll send you a link to reset your password.';
+
+  @override
+  String get sendResetLink => 'Send Reset Link';
+
+  @override
+  String get backToLogin => 'Back to Login';
+
+  @override
+  String get emailSent => 'Email Sent!';
+
+  @override
+  String get checkYourEmail =>
+      'We\'ve sent a password reset link to your email. Please check your inbox.';
+
+  @override
+  String get didntReceiveEmail => 'Didn\'t receive the email? Resend';
+
+  @override
+  String get orContinueWith => 'or continue with';
+
+  @override
+  String get continueWithGoogle => 'Continue with Google';
+
+  @override
+  String get dontHaveAccount => 'Don\'t have an account?';
+
+  @override
+  String get alreadyHaveAccount => 'Already have an account?';
+
+  @override
+  String get iAgreeToThe => 'I agree to the';
+
+  @override
+  String get termsOfService => 'Terms of Service';
+
+  @override
+  String get and => 'and';
+
+  @override
+  String get privacyPolicy => 'Privacy Policy';
+
+  @override
+  String get pleaseAcceptTerms => 'Please accept the terms and conditions';
+
+  @override
+  String get logoutConfirm => 'Are you sure you want to logout?';
+
+  @override
+  String get home => 'Home';
+
+  @override
+  String get marketplace => 'Marketplace';
+
+  @override
+  String get profile => 'Profile';
+
+  @override
+  String get goodMorning => 'Good Morning';
+
+  @override
+  String get goodAfternoon => 'Good Afternoon';
+
+  @override
+  String get goodEvening => 'Good Evening';
+
+  @override
+  String get todayWeather => 'Today\'s Weather';
+
+  @override
+  String get goodForInspection => 'Good for inspection';
+
+  @override
+  String get notGoodForInspection => 'Not ideal for inspection';
+
+  @override
+  String get quickActions => 'Quick Actions';
+
+  @override
+  String get newInspection => 'Inspect';
+
+  @override
+  String get recentActivity => 'Recent Activity';
+
+  @override
+  String get comingSoon => 'Coming Soon';
+
+  @override
+  String get marketplaceComingSoon =>
+      'Buy and sell honey, queens, and equipment';
+
+  @override
+  String get editProfile => 'Edit Profile';
+
+  @override
+  String get notifications => 'Notifications';
+
+  @override
+  String get language => 'Language';
+
+  @override
+  String get helpSupport => 'Help & Support';
+
+  @override
+  String get memberSince => 'Member';
 }

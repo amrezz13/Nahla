@@ -243,6 +243,88 @@
   "queen": "Reine",
   "eggs": "Œufs",
   "larvae": "Larves",
-  "feed": "Nourrir"
+  "feed": "Nourrir", 
+  
+  "login": "Connexion",
+  "signUp": "S'inscrire",
+  "logout": "Déconnexion",
+  
+  "welcomeBack": "Bon Retour",
+  "loginToContinue": "Connectez-vous pour continuer à gérer vos ruchers",
+  "createAccount": "Créer un Compte",
+  "signUpToGetStarted": "Inscrivez-vous pour commencer à gérer vos abeilles",
+  
+  "email": "E-mail",
+  "password": "Mot de passe",
+  "confirmPassword": "Confirmer le mot de passe",
+  "fullName": "Nom complet",
+  "fullNameHint": "Entrez votre nom complet",
+  "phoneNumber": "Numéro de téléphone",
+  
+  "pleaseEnterEmail": "Veuillez entrer votre e-mail",
+  "pleaseEnterValidEmail": "Veuillez entrer un e-mail valide",
+  "pleaseEnterPassword": "Veuillez entrer votre mot de passe",
+  "pleaseConfirmPassword": "Veuillez confirmer votre mot de passe",
+  "pleaseEnterName": "Veuillez entrer votre nom",
+  "pleaseEnterFullName": "Veuillez entrer votre nom complet",
+  "pleaseEnterPhone": "Veuillez entrer votre numéro de téléphone",
+  "passwordTooShort": "Le mot de passe doit contenir au moins 6 caractères",
+  "passwordsDoNotMatch": "Les mots de passe ne correspondent pas",
+  
+  "rememberMe": "Se souvenir de moi",
+  "forgotPassword": "Mot de passe oublié?",
+  "forgotPasswordDescription": "Entrez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
+  "sendResetLink": "Envoyer le lien",
+  "backToLogin": "Retour à la connexion",
+  
+  "emailSent": "E-mail envoyé!",
+  "checkYourEmail": "Nous avons envoyé un lien de réinitialisation à votre e-mail. Veuillez vérifier votre boîte de réception.",
+  "didntReceiveEmail": "Vous n'avez pas reçu l'e-mail? Renvoyer",
+  
+  "orContinueWith": "ou continuer avec",
+  "continueWithGoogle": "Continuer avec Google",
+  
+  "dontHaveAccount": "Vous n'avez pas de compte?",
+  "alreadyHaveAccount": "Vous avez déjà un compte?",
+  
+  "iAgreeToThe": "J'accepte les",
+  "termsOfService": "Conditions d'utilisation",
+  "and": "et",
+  "privacyPolicy": "Politique de confidentialité",
+  "pleaseAcceptTerms": "Veuillez accepter les conditions générales",
+  
+  "logoutConfirm": "Êtes-vous sûr de vouloir vous déconnecter?",
+  "cancel": "Annuler", 
+
+  "home": "Accueil",
+  "apiaries": "Ruchers",
+  "marketplace": "Marché",
+  "profile": "Profil",
+
+  "goodMorning": "Bonjour",
+  "goodAfternoon": "Bon après-midi",
+  "goodEvening": "Bonsoir",
+
+  "todayWeather": "Météo du jour",
+  "goodForInspection": "Bon pour l'inspection",
+  "notGoodForInspection": "Pas idéal pour l'inspection",
+  "beehives": "Ruches",
+  "inspections": "Inspections",
+  "quickActions": "Actions rapides",
+  "addApiary": "Ajouter rucher",
+  "addHive": "Ajouter ruche",
+  "newInspection": "Inspecter",
+  "recentActivity": "Activité récente",
+
+  "comingSoon": "Bientôt",
+  "marketplaceComingSoon": "Achetez et vendez du miel, des reines et du matériel",
+
+  "editProfile": "Modifier le profil",
+  "notifications": "Notifications",
+  "language": "Langue",
+  "helpSupport": "Aide et support",
+  "memberSince": "Membre"
+
+
 
 }

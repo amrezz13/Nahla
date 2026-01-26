@@ -233,7 +233,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Appuyez sur + pour ajouter votre premier rucher';
 
   @override
-  String get addApiary => 'Ajouter un rucher';
+  String get addApiary => 'Ajouter rucher';
 
   @override
   String get apiaryName => 'Nom du rucher';
@@ -272,7 +272,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get noHives => 'Aucune ruche';
 
   @override
-  String get addHive => 'Ajouter une ruche';
+  String get addHive => 'Ajouter ruche';
 
   @override
   String get createdAt => 'Créé le';
@@ -664,4 +664,178 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get feed => 'Nourrir';
+
+  @override
+  String get signUp => 'S\'inscrire';
+
+  @override
+  String get logout => 'Déconnexion';
+
+  @override
+  String get welcomeBack => 'Bon Retour';
+
+  @override
+  String get loginToContinue =>
+      'Connectez-vous pour continuer à gérer vos ruchers';
+
+  @override
+  String get createAccount => 'Créer un Compte';
+
+  @override
+  String get signUpToGetStarted =>
+      'Inscrivez-vous pour commencer à gérer vos abeilles';
+
+  @override
+  String get confirmPassword => 'Confirmer le mot de passe';
+
+  @override
+  String get fullName => 'Nom complet';
+
+  @override
+  String get fullNameHint => 'Entrez votre nom complet';
+
+  @override
+  String get phoneNumber => 'Numéro de téléphone';
+
+  @override
+  String get pleaseEnterEmail => 'Veuillez entrer votre e-mail';
+
+  @override
+  String get pleaseEnterValidEmail => 'Veuillez entrer un e-mail valide';
+
+  @override
+  String get pleaseEnterPassword => 'Veuillez entrer votre mot de passe';
+
+  @override
+  String get pleaseConfirmPassword => 'Veuillez confirmer votre mot de passe';
+
+  @override
+  String get pleaseEnterName => 'Veuillez entrer votre nom';
+
+  @override
+  String get pleaseEnterFullName => 'Veuillez entrer votre nom complet';
+
+  @override
+  String get pleaseEnterPhone => 'Veuillez entrer votre numéro de téléphone';
+
+  @override
+  String get passwordTooShort =>
+      'Le mot de passe doit contenir au moins 6 caractères';
+
+  @override
+  String get passwordsDoNotMatch => 'Les mots de passe ne correspondent pas';
+
+  @override
+  String get rememberMe => 'Se souvenir de moi';
+
+  @override
+  String get forgotPassword => 'Mot de passe oublié?';
+
+  @override
+  String get forgotPasswordDescription =>
+      'Entrez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.';
+
+  @override
+  String get sendResetLink => 'Envoyer le lien';
+
+  @override
+  String get backToLogin => 'Retour à la connexion';
+
+  @override
+  String get emailSent => 'E-mail envoyé!';
+
+  @override
+  String get checkYourEmail =>
+      'Nous avons envoyé un lien de réinitialisation à votre e-mail. Veuillez vérifier votre boîte de réception.';
+
+  @override
+  String get didntReceiveEmail => 'Vous n\'avez pas reçu l\'e-mail? Renvoyer';
+
+  @override
+  String get orContinueWith => 'ou continuer avec';
+
+  @override
+  String get continueWithGoogle => 'Continuer avec Google';
+
+  @override
+  String get dontHaveAccount => 'Vous n\'avez pas de compte?';
+
+  @override
+  String get alreadyHaveAccount => 'Vous avez déjà un compte?';
+
+  @override
+  String get iAgreeToThe => 'J\'accepte les';
+
+  @override
+  String get termsOfService => 'Conditions d\'utilisation';
+
+  @override
+  String get and => 'et';
+
+  @override
+  String get privacyPolicy => 'Politique de confidentialité';
+
+  @override
+  String get pleaseAcceptTerms => 'Veuillez accepter les conditions générales';
+
+  @override
+  String get logoutConfirm => 'Êtes-vous sûr de vouloir vous déconnecter?';
+
+  @override
+  String get home => 'Accueil';
+
+  @override
+  String get marketplace => 'Marché';
+
+  @override
+  String get profile => 'Profil';
+
+  @override
+  String get goodMorning => 'Bonjour';
+
+  @override
+  String get goodAfternoon => 'Bon après-midi';
+
+  @override
+  String get goodEvening => 'Bonsoir';
+
+  @override
+  String get todayWeather => 'Météo du jour';
+
+  @override
+  String get goodForInspection => 'Bon pour l\'inspection';
+
+  @override
+  String get notGoodForInspection => 'Pas idéal pour l\'inspection';
+
+  @override
+  String get quickActions => 'Actions rapides';
+
+  @override
+  String get newInspection => 'Inspecter';
+
+  @override
+  String get recentActivity => 'Activité récente';
+
+  @override
+  String get comingSoon => 'Bientôt';
+
+  @override
+  String get marketplaceComingSoon =>
+      'Achetez et vendez du miel, des reines et du matériel';
+
+  @override
+  String get editProfile => 'Modifier le profil';
+
+  @override
+  String get notifications => 'Notifications';
+
+  @override
+  String get language => 'Langue';
+
+  @override
+  String get helpSupport => 'Aide et support';
+
+  @override
+  String get memberSince => 'Membre';
 }
